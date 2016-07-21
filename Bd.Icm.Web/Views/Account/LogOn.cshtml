@@ -1,0 +1,49 @@
+﻿@model Bd.Icm.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8">
+            <img class="login-logo" src="/Content/bd-carefusion.png" alt="main logo" />
+            <h2 class="text-left">Welcome to the Instrument Configuration Management System</h2>
+            <p class="text-left">Please sign in to continue.</p>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <section id="loginForm">
+                <div class="login-box">
+                    @using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new { @class = "form-signin", role = "form" }))
+                    {
+                    @Html.AntiForgeryToken()
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Please Sign In</strong></div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <input type="text" id="username" name="username"
+                                       class="form-control form-control-login" placeholder="Username" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="password" name="password"
+                                       class="form-control form-control-login" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    @Html.CheckBox("rememberMe", false) Remember me
+                                </label>
+                            </div>
+                            <div class="form-group bg-danger">
+                                @Html.ValidationSummary()
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                        </div>
+                    </div>
+                        }
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+

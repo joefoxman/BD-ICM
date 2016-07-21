@@ -1,0 +1,1 @@
+{"version":3,"file":"layout.routes.js","sourceRoot":"","sources":["layout.routes.ts"],"names":[],"mappings":"AAAC,CAAC;IACE,YAAY,CAAC;IAEb,OAAO,CAAC,MAAM,CAAC,YAAY,CAAC;SACvB,MAAM,CAAC,MAAM,CAAC,CAAC;IAEpB,MAAM,CAAC,OAAO,GAAG,CAAC,gBAAgB,CAAC,CAAC;IACpC,gBAAgB,cAAyC;QACrD,gBAAgB;QAChB,sBAAsB;QACtB,sDAAsD;QACtD,yDAAyD;QACzD,SAAS;IACb,CAAC;AACL,CAAC,CAAC,EAAE,CAAC"}

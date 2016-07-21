@@ -1,0 +1,68 @@
+﻿<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Instruments</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="btn-toolbar">
+                <a href="" class="btn btn-primary"
+                   ng-if="!nav.isReadOnly()"
+                   ng-click="ivm.addInstrument()"><i class="fa fa-plus"> </i>Add instrument</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div ng-include="'app/common/spinner.html'" ng-show="ivm.isBusy"></div>
+            <div ng-show="!ivm.isBusy">
+                <h3 ng-show="ivm.instruments.length === 0">No instruments.</h3>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped" ng-hide="ivm.instruments.length === 0">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Type</th>
+                                <th>SAP Part Type</th>
+                                <th>NickName</th>
+                                <th>Serial #</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="instrument in ivm.instruments">
+                                <td style="width: 300px;">
+                                    <a ui-sref="root.instrument.edit({ instrumentId: instrument.instrumentId})"
+                                       ng-if="nav.isInRole(['Administrator', 'Contributor'])"
+                                       class="btn btn-sm btn-primary">
+                                        <i class="fa fa-edit"></i><span class="hidden-xs">&nbsp;Edit</span>
+                                    </a>
+                                    <a ui-sref="root.instrument.edit({ instrumentId: instrument.instrumentId})"
+                                       ng-if="nav.isReadOnly()"
+                                       class="btn btn-sm btn-primary">
+                                        <i class="fa fa-eye"></i><span class="hidden-xs">&nbsp;View</span>
+                                    </a>
+                                    <a ng-click="ivm.copyInstrument(instrument)"
+                                       ng-if="nav.isInRole(['Administrator', 'Contributor'])"
+                                       class="btn btn-sm btn-warning">
+                                        <i class="fa fa-copy"></i><span class="hidden-xs">&nbsp;Copy</span>
+                                    </a>
+                                    <a ng-click="ivm.exportToExcel(instrument)" class="btn btn-sm btn-info">
+                                        <i class="fa fa-file-excel-o"></i><span class="hidden-xs">&nbsp;Export</span>
+                                    </a>
+                                    <a ui-sref="root.instrument.history({ instrumentId: instrument.instrumentId})" class="btn btn-sm btn-info">
+                                        <i class="fa fa-history"></i><span class="hidden-xs">&nbsp;History</span>
+                                    </a>
+                                </td>
+                                <td><a ui-sref="root.instrument.edit({ instrumentId: instrument.instrumentId})">{{ instrument.type }}</a></td>
+                                <td>{{ instrument.sapPartType.name }}</td>
+                                <td>{{ instrument.nickName }}</td>
+                                <td>{{ instrument.serialNumber }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

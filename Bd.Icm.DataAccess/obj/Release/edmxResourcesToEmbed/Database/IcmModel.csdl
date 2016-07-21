@@ -1,0 +1,1045 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BdIcmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BdIcmEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="spGetNextInstrumentVersion" ReturnType="Collection(Int32)">
+      <Parameter Name="InstrumentId" Mode="In" Type="Int32" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetNextItemVersion" ReturnType="Collection(Int32)">
+      <Parameter Name="ItemId" Mode="In" Type="Int32" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetNextPartVersion" ReturnType="Collection(Int32)">
+      <Parameter Name="PartId" Mode="In" Type="Int32" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="InstrumentVersions" EntityType="BdIcmModel.InstrumentVersion" />
+    <EntitySet Name="PartActionVersions" EntityType="BdIcmModel.PartActionVersion" />
+    <EntitySet Name="PartMetadataVersions" EntityType="BdIcmModel.PartMetadataVersion" />
+    <EntitySet Name="PartVersions" EntityType="BdIcmModel.PartVersion" />
+    <FunctionImport Name="spFetchPartHeirarchy" ReturnType="Collection(BdIcmModel.spFetchPartHeirarchy_Result)">
+      <Parameter Name="PartId" Mode="In" Type="Int32" />
+      <Parameter Name="Version" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetNextPartActionVersion" ReturnType="Collection(Int32)">
+      <Parameter Name="PartActionId" Mode="In" Type="Int32" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="DbVersions" EntityType="BdIcmModel.DbVersion" />
+    <FunctionImport Name="spGetNextDbVersion" ReturnType="Collection(Int32)">
+      <Parameter Name="ModifiedBy" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="InstrumentCommits" EntityType="BdIcmModel.InstrumentCommit" />
+    <AssociationSet Name="FK_InstrumentCommit_InstrumentVersion" Association="BdIcmModel.FK_InstrumentCommit_InstrumentVersion">
+      <End Role="InstrumentVersion" EntitySet="InstrumentVersions" />
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommits" />
+    </AssociationSet>
+    <FunctionImport Name="spFetchUsersWithUncommitedChanges" ReturnType="Collection(BdIcmModel.spFetchUsersWithUncommitedChanges_Result)">
+      <Parameter Name="InstrumentId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spFetchUncommittedPartChanges" ReturnType="Collection(BdIcmModel.spFetchUncommittedPartChanges_Result)">
+      <Parameter Name="InstrumentId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Instruments" EntityType="BdIcmModel.Instrument" />
+    <EntitySet Name="Parts" EntityType="BdIcmModel.Part" />
+    <EntitySet Name="PartActions" EntityType="BdIcmModel.PartAction" />
+    <EntitySet Name="PartMetadatas" EntityType="BdIcmModel.PartMetadata" />
+    <AssociationSet Name="FK_Instrument_InstrumentVersion" Association="BdIcmModel.FK_Instrument_InstrumentVersion">
+      <End Role="InstrumentVersion" EntitySet="InstrumentVersions" />
+      <End Role="Instrument" EntitySet="Instruments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_InstrumentCommit" Association="BdIcmModel.FK_Part_InstrumentCommit">
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommits" />
+      <End Role="Part" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_InstrumentVersion" Association="BdIcmModel.FK_Part_InstrumentVersion">
+      <End Role="InstrumentVersion" EntitySet="InstrumentVersions" />
+      <End Role="Part" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_Part_Parent" Association="BdIcmModel.FK_Part_Part_Parent">
+      <End Role="PartVersion" EntitySet="PartVersions" />
+      <End Role="Part" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_PartVersion" Association="BdIcmModel.FK_Part_PartVersion">
+      <End Role="PartVersion" EntitySet="PartVersions" />
+      <End Role="Part" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartAction_PartActionVersion" Association="BdIcmModel.FK_PartAction_PartActionVersion">
+      <End Role="PartActionVersion" EntitySet="PartActionVersions" />
+      <End Role="PartAction" EntitySet="PartActions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartAction_PartVersion" Association="BdIcmModel.FK_PartAction_PartVersion">
+      <End Role="PartVersion" EntitySet="PartVersions" />
+      <End Role="PartAction" EntitySet="PartActions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadata_PartMetadataVersion" Association="BdIcmModel.FK_PartMetadata_PartMetadataVersion">
+      <End Role="PartMetadataVersion" EntitySet="PartMetadataVersions" />
+      <End Role="PartMetadata" EntitySet="PartMetadatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadata_PartVersion" Association="BdIcmModel.FK_PartMetadata_PartVersion">
+      <End Role="PartVersion" EntitySet="PartVersions" />
+      <End Role="PartMetadata" EntitySet="PartMetadatas" />
+    </AssociationSet>
+    <FunctionImport Name="spSearchInstrumentParts" ReturnType="Collection(BdIcmModel.spSearchInstrumentParts_Result)">
+      <Parameter Name="InstrumentId" Mode="In" Type="Int32" />
+      <Parameter Name="Version" Mode="In" Type="Int32" />
+      <Parameter Name="SearchKey" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Users" EntityType="BdIcmModel.User" />
+    <AssociationSet Name="FK_Instrument_User_Creator" Association="BdIcmModel.FK_Instrument_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Instrument" EntitySet="Instruments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instrument_User_Modifier" Association="BdIcmModel.FK_Instrument_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Instrument" EntitySet="Instruments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentCommit_User_Creator" Association="BdIcmModel.FK_InstrumentCommit_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentCommit_User_Modifier" Association="BdIcmModel.FK_InstrumentCommit_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentVersion_User_Creator" Association="BdIcmModel.FK_InstrumentVersion_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="InstrumentVersion" EntitySet="InstrumentVersions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentVersion_User_Modifier" Association="BdIcmModel.FK_InstrumentVersion_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="InstrumentVersion" EntitySet="InstrumentVersions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_User_Creator" Association="BdIcmModel.FK_Part_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Part" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_User_Modifier" Association="BdIcmModel.FK_Part_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Part" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartAction_User_Creator" Association="BdIcmModel.FK_PartAction_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PartAction" EntitySet="PartActions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartAction_User_Modifier" Association="BdIcmModel.FK_PartAction_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PartAction" EntitySet="PartActions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartActionVersion_User_Creator" Association="BdIcmModel.FK_PartActionVersion_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PartActionVersion" EntitySet="PartActionVersions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartActionVersion_User_Modifier" Association="BdIcmModel.FK_PartActionVersion_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PartActionVersion" EntitySet="PartActionVersions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadata_User_Creator" Association="BdIcmModel.FK_PartMetadata_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PartMetadata" EntitySet="PartMetadatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadata_User_Modifier" Association="BdIcmModel.FK_PartMetadata_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PartMetadata" EntitySet="PartMetadatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadataVersion_User_Creator" Association="BdIcmModel.FK_PartMetadataVersion_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PartMetadataVersion" EntitySet="PartMetadataVersions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadataVersion_User_Modifier" Association="BdIcmModel.FK_PartMetadataVersion_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PartMetadataVersion" EntitySet="PartMetadataVersions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartVersion_User_Creator" Association="BdIcmModel.FK_PartVersion_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PartVersion" EntitySet="PartVersions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartVersion_User_Modifier" Association="BdIcmModel.FK_PartVersion_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PartVersion" EntitySet="PartVersions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DbVersion_User_Modifier" Association="BdIcmModel.FK_DbVersion_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="DbVersion" EntitySet="DbVersions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User_Creator" Association="BdIcmModel.FK_User_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="User1" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User_Modifier" Association="BdIcmModel.FK_User_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="User1" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartAction_InstrumentCommit" Association="BdIcmModel.FK_PartAction_InstrumentCommit">
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommits" />
+      <End Role="PartAction" EntitySet="PartActions" />
+    </AssociationSet>
+    <FunctionImport Name="spFetchInstrumentChanges" ReturnType="Collection(BdIcmModel.spFetchInstrumentChanges_Result)">
+      <Parameter Name="InstrumentId" Mode="In" Type="Int32" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <AssociationSet Name="FK_PartMetadata_InstrumentCommit" Association="BdIcmModel.FK_PartMetadata_InstrumentCommit">
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommits" />
+      <End Role="PartMetadata" EntitySet="PartMetadatas" />
+    </AssociationSet>
+    <FunctionImport Name="spFetchUncommittedMetadataChanges" ReturnType="Collection(BdIcmModel.spFetchUncommittedMetadataChanges_Result)">
+      <Parameter Name="InstrumentId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Roles" EntityType="BdIcmModel.Role" />
+    <EntitySet Name="UserRoles" EntityType="BdIcmModel.UserRole" />
+    <AssociationSet Name="FK_Role_User_Creator" Association="BdIcmModel.FK_Role_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Role_User_Modifier" Association="BdIcmModel.FK_Role_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="BdIcmModel.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="BdIcmModel.FK_UserRole_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User_Creator" Association="BdIcmModel.FK_UserRole_User_Creator">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User_Modifier" Association="BdIcmModel.FK_UserRole_User_Modifier">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="InstrumentVersion">
+    <Key>
+      <PropertyRef Name="InstrumentId" />
+    </Key>
+    <Property Name="InstrumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="InstrumentCommits" Relationship="BdIcmModel.FK_InstrumentCommit_InstrumentVersion" FromRole="InstrumentVersion" ToRole="InstrumentCommit" />
+    <NavigationProperty Name="Instruments" Relationship="BdIcmModel.FK_Instrument_InstrumentVersion" FromRole="InstrumentVersion" ToRole="Instrument" />
+    <NavigationProperty Name="Parts" Relationship="BdIcmModel.FK_Part_InstrumentVersion" FromRole="InstrumentVersion" ToRole="Part" />
+    <NavigationProperty Name="User" Relationship="BdIcmModel.FK_InstrumentVersion_User_Creator" FromRole="InstrumentVersion" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="BdIcmModel.FK_InstrumentVersion_User_Modifier" FromRole="InstrumentVersion" ToRole="User" />
+  </EntityType>
+  <EntityType Name="PartActionVersion">
+    <Key>
+      <PropertyRef Name="PartActionId" />
+    </Key>
+    <Property Name="PartActionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="PartActions" Relationship="BdIcmModel.FK_PartAction_PartActionVersion" FromRole="PartActionVersion" ToRole="PartAction" />
+    <NavigationProperty Name="User" Relationship="BdIcmModel.FK_PartActionVersion_User_Creator" FromRole="PartActionVersion" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="BdIcmModel.FK_PartActionVersion_User_Modifier" FromRole="PartActionVersion" ToRole="User" />
+  </EntityType>
+  <EntityType Name="PartMetadataVersion">
+    <Key>
+      <PropertyRef Name="PartMetadataId" />
+    </Key>
+    <Property Name="PartMetadataId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="PartMetadatas" Relationship="BdIcmModel.FK_PartMetadata_PartMetadataVersion" FromRole="PartMetadataVersion" ToRole="PartMetadata" />
+    <NavigationProperty Name="User" Relationship="BdIcmModel.FK_PartMetadataVersion_User_Creator" FromRole="PartMetadataVersion" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="BdIcmModel.FK_PartMetadataVersion_User_Modifier" FromRole="PartMetadataVersion" ToRole="User" />
+  </EntityType>
+  <EntityType Name="PartVersion">
+    <Key>
+      <PropertyRef Name="PartId" />
+    </Key>
+    <Property Name="PartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Parts" Relationship="BdIcmModel.FK_Part_Part_Parent" FromRole="PartVersion" ToRole="Part" />
+    <NavigationProperty Name="Parts1" Relationship="BdIcmModel.FK_Part_PartVersion" FromRole="PartVersion" ToRole="Part" />
+    <NavigationProperty Name="PartActions" Relationship="BdIcmModel.FK_PartAction_PartVersion" FromRole="PartVersion" ToRole="PartAction" />
+    <NavigationProperty Name="PartMetadatas" Relationship="BdIcmModel.FK_PartMetadata_PartVersion" FromRole="PartVersion" ToRole="PartMetadata" />
+    <NavigationProperty Name="User" Relationship="BdIcmModel.FK_PartVersion_User_Creator" FromRole="PartVersion" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="BdIcmModel.FK_PartVersion_User_Modifier" FromRole="PartVersion" ToRole="User" />
+  </EntityType>
+  <ComplexType Name="spFetchPartHeirarchy_Result">
+    <Property Type="Int32" Name="InstrumentId" Nullable="true" />
+    <Property Type="Int32" Name="ParentPartId" Nullable="true" />
+    <Property Type="Int32" Name="PartId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="Level" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="DbVersion">
+    <Key>
+      <PropertyRef Name="DbVersion1" />
+      <PropertyRef Name="ModifiedDate" />
+      <PropertyRef Name="ModifiedBy" />
+    </Key>
+    <Property Name="DbVersion1" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="BdIcmModel.FK_DbVersion_User_Modifier" FromRole="DbVersion" ToRole="User" />
+  </EntityType>
+  <EntityType Name="InstrumentCommit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InstrumentId" Type="Int32" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="InstrumentVersion" Relationship="BdIcmModel.FK_InstrumentCommit_InstrumentVersion" FromRole="InstrumentCommit" ToRole="InstrumentVersion" />
+    <NavigationProperty Name="Parts" Relationship="BdIcmModel.FK_Part_InstrumentCommit" FromRole="InstrumentCommit" ToRole="Part" />
+    <NavigationProperty Name="Creator" Relationship="BdIcmModel.FK_InstrumentCommit_User_Creator" FromRole="InstrumentCommit" ToRole="User" />
+    <NavigationProperty Name="Modifier" Relationship="BdIcmModel.FK_InstrumentCommit_User_Modifier" FromRole="InstrumentCommit" ToRole="User" />
+    <NavigationProperty Name="PartActions" Relationship="BdIcmModel.FK_PartAction_InstrumentCommit" FromRole="InstrumentCommit" ToRole="PartAction" />
+    <Property Name="Revision" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveTo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PartMetadatas" Relationship="BdIcmModel.FK_PartMetadata_InstrumentCommit" FromRole="InstrumentCommit" ToRole="PartMetadata" />
+  </EntityType>
+  <Association Name="FK_InstrumentCommit_InstrumentVersion">
+    <End Type="BdIcmModel.InstrumentVersion" Role="InstrumentVersion" Multiplicity="1" />
+    <End Type="BdIcmModel.InstrumentCommit" Role="InstrumentCommit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentVersion">
+        <PropertyRef Name="InstrumentId" />
+      </Principal>
+      <Dependent Role="InstrumentCommit">
+        <PropertyRef Name="InstrumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="spFetchUsersWithUncommitedChanges_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spFetchUncommittedPartChanges_Result">
+    <Property Type="Int32" Name="ParentPartId" Nullable="true" />
+    <Property Type="Int32" Name="PartId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="DashNumber" Nullable="true" />
+    <Property Type="String" Name="SerialNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SapPartNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="InstrumentCommitId" Nullable="true" />
+    <Property Type="Int32" Name="Level" Nullable="true" />
+    <Property Type="String" Name="Creator" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Modifier" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="RowVersion" Nullable="true" />
+    <Property Type="String" Name="DocumentNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ModificationType" Nullable="true" />
+    <Property Type="Int32" Name="EffectiveTo" Nullable="true" />
+    <Property Type="Int32" Name="EffectiveFrom" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Instrument">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RowVersion" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NickName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SerialNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveFrom" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveTo" Type="Int32" Nullable="false" />
+    <Property Name="SapPartType" Type="Int32" />
+    <Property Name="ModificationType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="InstrumentVersion" Relationship="BdIcmModel.FK_Instrument_InstrumentVersion" FromRole="Instrument" ToRole="InstrumentVersion" />
+    <NavigationProperty Name="Creator" Relationship="BdIcmModel.FK_Instrument_User_Creator" FromRole="Instrument" ToRole="User" />
+    <NavigationProperty Name="Modifier" Relationship="BdIcmModel.FK_Instrument_User_Modifier" FromRole="Instrument" ToRole="User" />
+    <Property Name="MajorRevision" Type="Int32" Nullable="false" />
+    <Property Name="MinorRevision" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Part">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RowVersion" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParentPartId" Type="Int32" />
+    <Property Name="InstrumentId" Type="Int32" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SerialNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DashNumber" Type="Int32" Nullable="true" />
+    <Property Name="RevisionNumber" Type="Int32" Nullable="false" />
+    <Property Name="SapPartNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SapPartType" Type="Int32" Nullable="false" />
+    <Property Name="LotCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveFrom" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveTo" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="InstrumentCommitId" Type="Int32" />
+    <Property Name="ModificationType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="InstrumentCommit" Relationship="BdIcmModel.FK_Part_InstrumentCommit" FromRole="Part" ToRole="InstrumentCommit" />
+    <NavigationProperty Name="InstrumentVersion" Relationship="BdIcmModel.FK_Part_InstrumentVersion" FromRole="Part" ToRole="InstrumentVersion" />
+    <NavigationProperty Name="PartVersion" Relationship="BdIcmModel.FK_Part_Part_Parent" FromRole="Part" ToRole="PartVersion" />
+    <NavigationProperty Name="PartVersion1" Relationship="BdIcmModel.FK_Part_PartVersion" FromRole="Part" ToRole="PartVersion" />
+    <Property Name="MfgPartNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="true" />
+    <NavigationProperty Name="Creator" Relationship="BdIcmModel.FK_Part_User_Creator" FromRole="Part" ToRole="User" />
+    <NavigationProperty Name="Modifier" Relationship="BdIcmModel.FK_Part_User_Modifier" FromRole="Part" ToRole="User" />
+    <Property Name="Manufacturer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PartAction">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RowVersion" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartId" Type="Int32" Nullable="false" />
+    <Property Name="Action" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="ActionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveFrom" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveTo" Type="Int32" Nullable="false" />
+    <Property Name="ModificationType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PartActionVersion" Relationship="BdIcmModel.FK_PartAction_PartActionVersion" FromRole="PartAction" ToRole="PartActionVersion" />
+    <NavigationProperty Name="PartVersion" Relationship="BdIcmModel.FK_PartAction_PartVersion" FromRole="PartAction" ToRole="PartVersion" />
+    <NavigationProperty Name="Creator" Relationship="BdIcmModel.FK_PartAction_User_Creator" FromRole="PartAction" ToRole="User" />
+    <NavigationProperty Name="Modifier" Relationship="BdIcmModel.FK_PartAction_User_Modifier" FromRole="PartAction" ToRole="User" />
+    <Property Name="InstrumentCommitId" Type="Int32" />
+    <NavigationProperty Name="InstrumentCommit" Relationship="BdIcmModel.FK_PartAction_InstrumentCommit" FromRole="PartAction" ToRole="InstrumentCommit" />
+  </EntityType>
+  <EntityType Name="PartMetadata">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RowVersion" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartId" Type="Int32" Nullable="false" />
+    <Property Name="MetaKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MetaValue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveFrom" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveTo" Type="Int32" Nullable="false" />
+    <Property Name="ModificationType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PartMetadataVersion" Relationship="BdIcmModel.FK_PartMetadata_PartMetadataVersion" FromRole="PartMetadata" ToRole="PartMetadataVersion" />
+    <NavigationProperty Name="PartVersion" Relationship="BdIcmModel.FK_PartMetadata_PartVersion" FromRole="PartMetadata" ToRole="PartVersion" />
+    <NavigationProperty Name="Creator" Relationship="BdIcmModel.FK_PartMetadata_User_Creator" FromRole="PartMetadata" ToRole="User" />
+    <NavigationProperty Name="Modifier" Relationship="BdIcmModel.FK_PartMetadata_User_Modifier" FromRole="PartMetadata" ToRole="User" />
+    <Property Name="InstrumentCommitId" Type="Int32" />
+    <NavigationProperty Name="InstrumentCommit" Relationship="BdIcmModel.FK_PartMetadata_InstrumentCommit" FromRole="PartMetadata" ToRole="InstrumentCommit" />
+  </EntityType>
+  <Association Name="FK_Instrument_InstrumentVersion">
+    <End Type="BdIcmModel.InstrumentVersion" Role="InstrumentVersion" Multiplicity="1" />
+    <End Type="BdIcmModel.Instrument" Role="Instrument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentVersion">
+        <PropertyRef Name="InstrumentId" />
+      </Principal>
+      <Dependent Role="Instrument">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_InstrumentCommit">
+    <End Type="BdIcmModel.InstrumentCommit" Role="InstrumentCommit" Multiplicity="0..1" />
+    <End Type="BdIcmModel.Part" Role="Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentCommit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="InstrumentCommitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_InstrumentVersion">
+    <End Type="BdIcmModel.InstrumentVersion" Role="InstrumentVersion" Multiplicity="0..1" />
+    <End Type="BdIcmModel.Part" Role="Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentVersion">
+        <PropertyRef Name="InstrumentId" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="InstrumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_Part_Parent">
+    <End Type="BdIcmModel.PartVersion" Role="PartVersion" Multiplicity="0..1" />
+    <End Type="BdIcmModel.Part" Role="Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartVersion">
+        <PropertyRef Name="PartId" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="ParentPartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_PartVersion">
+    <End Type="BdIcmModel.PartVersion" Role="PartVersion" Multiplicity="1" />
+    <End Type="BdIcmModel.Part" Role="Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartVersion">
+        <PropertyRef Name="PartId" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartAction_PartActionVersion">
+    <End Type="BdIcmModel.PartActionVersion" Role="PartActionVersion" Multiplicity="1" />
+    <End Type="BdIcmModel.PartAction" Role="PartAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartActionVersion">
+        <PropertyRef Name="PartActionId" />
+      </Principal>
+      <Dependent Role="PartAction">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartAction_PartVersion">
+    <End Type="BdIcmModel.PartVersion" Role="PartVersion" Multiplicity="1" />
+    <End Type="BdIcmModel.PartAction" Role="PartAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartVersion">
+        <PropertyRef Name="PartId" />
+      </Principal>
+      <Dependent Role="PartAction">
+        <PropertyRef Name="PartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadata_PartMetadataVersion">
+    <End Type="BdIcmModel.PartMetadataVersion" Role="PartMetadataVersion" Multiplicity="1" />
+    <End Type="BdIcmModel.PartMetadata" Role="PartMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartMetadataVersion">
+        <PropertyRef Name="PartMetadataId" />
+      </Principal>
+      <Dependent Role="PartMetadata">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadata_PartVersion">
+    <End Type="BdIcmModel.PartVersion" Role="PartVersion" Multiplicity="1" />
+    <End Type="BdIcmModel.PartMetadata" Role="PartMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartVersion">
+        <PropertyRef Name="PartId" />
+      </Principal>
+      <Dependent Role="PartMetadata">
+        <PropertyRef Name="PartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="spSearchInstrumentParts_Result">
+    <Property Type="Int32" Name="ParentPartId" Nullable="true" />
+    <Property Type="Int32" Name="PartId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="DocumentNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SerialNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SapPartNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Level" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDisabled" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Role" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Instruments" Relationship="BdIcmModel.FK_Instrument_User_Creator" FromRole="User" ToRole="Instrument" />
+    <NavigationProperty Name="Instruments1" Relationship="BdIcmModel.FK_Instrument_User_Modifier" FromRole="User" ToRole="Instrument" />
+    <NavigationProperty Name="InstrumentCommits" Relationship="BdIcmModel.FK_InstrumentCommit_User_Creator" FromRole="User" ToRole="InstrumentCommit" />
+    <NavigationProperty Name="InstrumentCommits1" Relationship="BdIcmModel.FK_InstrumentCommit_User_Modifier" FromRole="User" ToRole="InstrumentCommit" />
+    <NavigationProperty Name="InstrumentVersions" Relationship="BdIcmModel.FK_InstrumentVersion_User_Creator" FromRole="User" ToRole="InstrumentVersion" />
+    <NavigationProperty Name="InstrumentVersions1" Relationship="BdIcmModel.FK_InstrumentVersion_User_Modifier" FromRole="User" ToRole="InstrumentVersion" />
+    <NavigationProperty Name="Parts" Relationship="BdIcmModel.FK_Part_User_Creator" FromRole="User" ToRole="Part" />
+    <NavigationProperty Name="Parts1" Relationship="BdIcmModel.FK_Part_User_Modifier" FromRole="User" ToRole="Part" />
+    <NavigationProperty Name="PartActions" Relationship="BdIcmModel.FK_PartAction_User_Creator" FromRole="User" ToRole="PartAction" />
+    <NavigationProperty Name="PartActions1" Relationship="BdIcmModel.FK_PartAction_User_Modifier" FromRole="User" ToRole="PartAction" />
+    <NavigationProperty Name="PartActionVersions" Relationship="BdIcmModel.FK_PartActionVersion_User_Creator" FromRole="User" ToRole="PartActionVersion" />
+    <NavigationProperty Name="PartActionVersions1" Relationship="BdIcmModel.FK_PartActionVersion_User_Modifier" FromRole="User" ToRole="PartActionVersion" />
+    <NavigationProperty Name="PartMetadatas" Relationship="BdIcmModel.FK_PartMetadata_User_Creator" FromRole="User" ToRole="PartMetadata" />
+    <NavigationProperty Name="PartMetadatas1" Relationship="BdIcmModel.FK_PartMetadata_User_Modifier" FromRole="User" ToRole="PartMetadata" />
+    <NavigationProperty Name="PartMetadataVersions" Relationship="BdIcmModel.FK_PartMetadataVersion_User_Creator" FromRole="User" ToRole="PartMetadataVersion" />
+    <NavigationProperty Name="PartMetadataVersions1" Relationship="BdIcmModel.FK_PartMetadataVersion_User_Modifier" FromRole="User" ToRole="PartMetadataVersion" />
+    <NavigationProperty Name="PartVersions" Relationship="BdIcmModel.FK_PartVersion_User_Creator" FromRole="User" ToRole="PartVersion" />
+    <NavigationProperty Name="PartVersions1" Relationship="BdIcmModel.FK_PartVersion_User_Modifier" FromRole="User" ToRole="PartVersion" />
+    <NavigationProperty Name="DbVersions" Relationship="BdIcmModel.FK_DbVersion_User_Modifier" FromRole="User" ToRole="DbVersion" />
+    <NavigationProperty Name="User1" Relationship="BdIcmModel.FK_User_User_Creator" FromRole="User" ToRole="User1" />
+    <NavigationProperty Name="User2" Relationship="BdIcmModel.FK_User_User_Creator" FromRole="User1" ToRole="User" />
+    <NavigationProperty Name="User11" Relationship="BdIcmModel.FK_User_User_Modifier" FromRole="User" ToRole="User1" />
+    <NavigationProperty Name="User3" Relationship="BdIcmModel.FK_User_User_Modifier" FromRole="User1" ToRole="User" />
+    <NavigationProperty Name="Roles" Relationship="BdIcmModel.FK_Role_User_Creator" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Roles1" Relationship="BdIcmModel.FK_Role_User_Modifier" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="UserRoles" Relationship="BdIcmModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+    <NavigationProperty Name="UserRoles1" Relationship="BdIcmModel.FK_UserRole_User_Creator" FromRole="User" ToRole="UserRole" />
+    <NavigationProperty Name="UserRoles2" Relationship="BdIcmModel.FK_UserRole_User_Modifier" FromRole="User" ToRole="UserRole" />
+  </EntityType>
+  <Association Name="FK_Instrument_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.Instrument" Role="Instrument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Instrument">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instrument_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.Instrument" Role="Instrument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Instrument">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentCommit_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.InstrumentCommit" Role="InstrumentCommit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstrumentCommit">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentCommit_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.InstrumentCommit" Role="InstrumentCommit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstrumentCommit">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentVersion_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.InstrumentVersion" Role="InstrumentVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstrumentVersion">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentVersion_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.InstrumentVersion" Role="InstrumentVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstrumentVersion">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.Part" Role="Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.Part" Role="Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartAction_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.PartAction" Role="PartAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartAction">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartAction_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.PartAction" Role="PartAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartAction">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartActionVersion_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.PartActionVersion" Role="PartActionVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartActionVersion">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartActionVersion_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.PartActionVersion" Role="PartActionVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartActionVersion">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadata_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.PartMetadata" Role="PartMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartMetadata">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadata_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.PartMetadata" Role="PartMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartMetadata">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadataVersion_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.PartMetadataVersion" Role="PartMetadataVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartMetadataVersion">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadataVersion_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.PartMetadataVersion" Role="PartMetadataVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartMetadataVersion">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartVersion_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.PartVersion" Role="PartVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartVersion">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartVersion_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.PartVersion" Role="PartVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartVersion">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DbVersion_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.DbVersion" Role="DbVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DbVersion">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.User" Role="User1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.User" Role="User1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartAction_InstrumentCommit">
+    <End Type="BdIcmModel.InstrumentCommit" Role="InstrumentCommit" Multiplicity="0..1" />
+    <End Type="BdIcmModel.PartAction" Role="PartAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentCommit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartAction">
+        <PropertyRef Name="InstrumentCommitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="spFetchInstrumentChanges_Result">
+    <Property Type="Int32" Name="ParentPartId" Nullable="true" />
+    <Property Type="Int32" Name="PartId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="DocumentNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Action" Nullable="true" />
+    <Property Type="Int32" Name="ActionDate" Nullable="true" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Modifier" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ModificationType" Nullable="true" />
+    <Property Type="Int32" Name="RowVersion" Nullable="true" />
+    <Property Type="Int32" Name="EffectiveFrom" Nullable="true" />
+    <Property Type="Int32" Name="EffectiveTo" Nullable="true" />
+  </ComplexType>
+  <Association Name="FK_PartMetadata_InstrumentCommit">
+    <End Type="BdIcmModel.InstrumentCommit" Role="InstrumentCommit" Multiplicity="0..1" />
+    <End Type="BdIcmModel.PartMetadata" Role="PartMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentCommit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartMetadata">
+        <PropertyRef Name="InstrumentCommitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="spFetchUncommittedMetadataChanges_Result">
+    <Property Type="Int32" Name="PartId" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+    <Property Type="String" Name="MetaKey" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="InstrumentCommitId" Nullable="true" />
+    <Property Type="Int32" Name="Level" Nullable="true" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Creator" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Modifier" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ModificationType" Nullable="true" />
+    <Property Type="Int32" Name="RowVersion" Nullable="true" />
+    <Property Type="Int32" Name="PartMetadataId" Nullable="true" />
+    <Property Type="String" Name="MetaValue" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="EffectiveTo" Nullable="true" />
+    <Property Type="Int32" Name="EffectiveFrom" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDisabled" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Creator" Relationship="BdIcmModel.FK_Role_User_Creator" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="Modifier" Relationship="BdIcmModel.FK_Role_User_Modifier" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="UserRoles" Relationship="BdIcmModel.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Role" Relationship="BdIcmModel.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="BdIcmModel.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
+    <NavigationProperty Name="Creator" Relationship="BdIcmModel.FK_UserRole_User_Creator" FromRole="UserRole" ToRole="User" />
+    <NavigationProperty Name="Modifier" Relationship="BdIcmModel.FK_UserRole_User_Modifier" FromRole="UserRole" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Role_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Role_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Type="BdIcmModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="BdIcmModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User_Creator">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User_Modifier">
+    <End Type="BdIcmModel.User" Role="User" Multiplicity="1" />
+    <End Type="BdIcmModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

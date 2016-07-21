@@ -1,0 +1,49 @@
+﻿<div ng-include="'app/common/spinner.html'" ng-show="ilvm.isBusy"></div>
+<div class="instrument-nav-fixed" id="instrumentHeader">
+    <div class="row" ng-hide="ilvm.isBusy">
+        <nav class="navbar instrument-nav">
+            <div class="col-sm-8">
+                <div>
+                    <div ng-if="ilvm.instrument.isNew">
+                        <h1><< New Instrument >></h1>
+                    </div>
+                    <div ng-if="!ilvm.instrument.isNew">
+                        <div class="instrument-title">
+                            <a ui-sref="root.instrument.edit({ instrumentId: ilvm.instrument.instrumentId })">{{ ilvm.instrument.type }}</a>
+                            <button class="btn btn-primary btn-sm"
+                                    ui-sref="root.instrument.history({ instrumentId: ilvm.instrument.instrumentId })">{{ ilvm.instrument.majorRevision }}</button>
+                        </div>
+                        <form class="form-inline pull-left search-well">
+                            <div class="input-group hidden-sm hidden-xs">
+                                <input type="text" ng-model="ilvm.searchKey" class="form-control" name="partSearch" id="partSearch"
+                                       typeahead-on-select="ilvm.editPart($item, $model, $label, $event)"
+                                       typeahead-template-url="/app/instruments/partSearchResult.template.view.html"
+                                       typeahead-editable="false"
+                                       placeholder="Search for parts..."
+                                       uib-typeahead="sr.name for sr in ilvm.searchParts($viewValue)" />
+                                <span class="input-group-addon"><i class="fa fa-search text-muted"></i></span>
+                            </div>
+                            <!--<button class="btn btn-info hidden-sm hidden-xs"
+                                    ui-sref="root.instrument.history({ instrumentId: ilvm.instrument.instrumentId })">
+                                <i class="fa fa-history"></i>&nbsp;History
+                            </button>-->
+                            <button class="btn btn-info hidden-sm hidden-xs"
+                                    ng-click="ilvm.exportToExcel()">
+                                <i class="fa fa-file-excel-o"></i>&nbsp;Export
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 hidden-xs">
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="instrument-status" ng-show="ilvm.changeUsers.length > 0">
+                        <span class="hidden-sm hidden-xs">There are uncommitted changes&nbsp;</span>
+                        <button ng-if="nav.isInRole(['Committer'])" ng-click="ilvm.commit()" class="btn btn-xs btn-warning"><i class="fa fa-tag"></i>&nbsp;Commit</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<div ui-view ng-hide="ilvm.isBusy" class="instrument-body"></div>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5065ed34d58345a0af798f821a0e3cc3" Name="Diagram1" ZoomLevel="97" >
+        <EntityTypeShape EntityType="BdIcmModel.InstrumentVersion" Width="1.5" PointX="3" PointY="14.75" />
+        <EntityTypeShape EntityType="BdIcmModel.PartActionVersion" Width="1.5" PointX="3" PointY="36.375" />
+        <EntityTypeShape EntityType="BdIcmModel.PartMetadataVersion" Width="1.5" PointX="3" PointY="27.75" />
+        <EntityTypeShape EntityType="BdIcmModel.PartVersion" Width="1.5" PointX="3" PointY="40" />
+        <EntityTypeShape EntityType="BdIcmModel.DbVersion" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BdIcmModel.InstrumentCommit" Width="1.5" PointX="8.25" PointY="17.25" />
+        <AssociationConnector Association="BdIcmModel.FK_InstrumentCommit_InstrumentVersion" />
+        <EntityTypeShape EntityType="BdIcmModel.Instrument" Width="1.5" PointX="5.5" PointY="20.75" />
+        <EntityTypeShape EntityType="BdIcmModel.Part" Width="1.5" PointX="10.75" PointY="25.875" />
+        <EntityTypeShape EntityType="BdIcmModel.PartAction" Width="1.5" PointX="8.5" PointY="30.625" />
+        <EntityTypeShape EntityType="BdIcmModel.PartMetadata" Width="1.5" PointX="5.5" PointY="27.75" />
+        <AssociationConnector Association="BdIcmModel.FK_Instrument_InstrumentVersion" />
+        <AssociationConnector Association="BdIcmModel.FK_Part_InstrumentCommit" />
+        <AssociationConnector Association="BdIcmModel.FK_Part_InstrumentVersion" />
+        <AssociationConnector Association="BdIcmModel.FK_Part_Part_Parent" />
+        <AssociationConnector Association="BdIcmModel.FK_Part_PartVersion" />
+        <AssociationConnector Association="BdIcmModel.FK_PartAction_PartActionVersion" />
+        <AssociationConnector Association="BdIcmModel.FK_PartAction_PartVersion" />
+        <AssociationConnector Association="BdIcmModel.FK_PartMetadata_PartMetadataVersion" />
+        <AssociationConnector Association="BdIcmModel.FK_PartMetadata_PartVersion" />
+        <EntityTypeShape EntityType="BdIcmModel.User" Width="1.5" PointX="0.75" PointY="18.125" />
+        <AssociationConnector Association="BdIcmModel.FK_Instrument_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_Instrument_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_InstrumentCommit_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_InstrumentCommit_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_InstrumentVersion_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_InstrumentVersion_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_Part_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_Part_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_PartAction_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_PartAction_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_PartActionVersion_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_PartActionVersion_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_PartMetadata_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_PartMetadata_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_PartMetadataVersion_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_PartMetadataVersion_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_PartVersion_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_PartVersion_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_DbVersion_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_User_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_User_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_PartAction_InstrumentCommit" />
+        <AssociationConnector Association="BdIcmModel.FK_PartMetadata_InstrumentCommit" />
+        <EntityTypeShape EntityType="BdIcmModel.Role" Width="1.5" PointX="3.25" PointY="21" />
+        <EntityTypeShape EntityType="BdIcmModel.UserRole" Width="1.5" PointX="8.5" PointY="22.875" />
+        <AssociationConnector Association="BdIcmModel.FK_Role_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_Role_User_Modifier" />
+        <AssociationConnector Association="BdIcmModel.FK_UserRole_Role" />
+        <AssociationConnector Association="BdIcmModel.FK_UserRole_User" />
+        <AssociationConnector Association="BdIcmModel.FK_UserRole_User_Creator" />
+        <AssociationConnector Association="BdIcmModel.FK_UserRole_User_Modifier" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

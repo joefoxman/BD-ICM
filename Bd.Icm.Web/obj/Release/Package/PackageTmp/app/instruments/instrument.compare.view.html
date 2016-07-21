@@ -1,0 +1,232 @@
+﻿<div ng-include="'app/common/spinner.html'" ng-show="icvm.isBusy"></div>
+<div class="animated fadeIn" ng-hide="icvm.isBusy">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Instrument Diff</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>
+                Comparison between configurations <span class="label label-primary">{{ icvm.changes.fromCommit.revision }}</span> and <span class="label label-success">{{ icvm.changes.toCommit.revision }}</span>
+            </h3>
+        </div>
+    </div>
+    <div class="row" ng-show="!icvm.isBusy && icvm.changes.deletedParts.length > 0">
+        <div class="col-sm-12">
+            <h4>Deleted Parts</h4>
+            <div class="table-responsive">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Part Name</th>
+                            <th>Description</th>
+                            <th>Document #</th>
+                            <th>Dash #</th>
+                            <th>Revision</th>
+                            <th>Serial #</th>
+                            <th>SAP Part Type</th>
+                            <th>SAP Part #</th>
+                            <th>Mfg Part #</th>
+                            <th>Deleted</th>
+                            <th>Deleted By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="part in icvm.changes.deletedParts">
+                            <td>{{ part.name }}</td>
+                            <td>{{ part.description }}</td>
+                            <td>{{ part.documentNumber }}</td>
+                            <td>{{ part.dashNumber }}</td>
+                            <td>{{ part.revisionNumber }}</td>
+                            <td>{{ part.serialNumber }}</td>
+                            <td>{{ part.sapPartType.name }}</td>
+                            <td>{{ part.sapPartNumber }}</td>
+                            <td>{{ part.mfgPartNumber }}</td>
+                            <td data-toggle="tooltip" title="{{ part.modifiedDate | date: 'hh:mm:ss.sss a' }}">{{ part.modifiedDate | date: 'MM/dd/yyyy hh:mm:ss a' }}</td>
+                            <td>{{ part.modifier }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="!icvm.isBusy && icvm.changes.addedParts.length > 0">
+        <div class="col-sm-12">
+            <h4>Added Parts</h4>
+            <div class="table-responsive">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Part Name</th>
+                            <th>Description</th>
+                            <th>Document #</th>
+                            <th>Dash #</th>
+                            <th>Revision</th>
+                            <th>Serial #</th>
+                            <th>SAP Part Type</th>
+                            <th>SAP Part #</th>
+                            <th>Mfg Part #</th>
+                            <th>Created</th>
+                            <th>Creator</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat-start="part in icvm.changes.addedParts">
+                            <td>{{ part.name }}</td>
+                            <td>{{ part.description }}</td>
+                            <td>{{ part.documentNumber }}</td>
+                            <td>{{ part.dashNumber }}</td>
+                            <td>{{ part.revisionNumber }}</td>
+                            <td>{{ part.serialNumber }}</td>
+                            <td>{{ part.sapPartType.name }}</td>
+                            <td>{{ part.sapPartNumber }}</td>
+                            <td>{{ part.mfgPartNumber }}</td>
+                            <td data-toggle="tooltip" title="{{ part.createdDate | date: 'hh:mm:ss.sss a' }}">{{ part.createdDate | date: 'MM/dd/yyyy hh:mm:ss a' }}</td>
+                            <td>{{ part.creator }}</td>
+                        </tr>
+                        <tr ng-repeat-end ng-if="part.metadata.length > 0" class="no-border">
+                            <td class="text-right"><h5>Settings</h5></td>
+                            <td colspan="6">
+                                <table class="table table-condensed settings">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter Name</th>
+                                            <th>Parameter Value</th>
+                                            <th>Modified</th>
+                                            <th>Modifier</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="setting in part.metadata">
+                                            <td>{{ setting.metaKey }}</td>
+                                            <td>{{ setting.metaValue }}</td>
+                                            <td>{{ setting.modifiedDate | date: 'hh:mm:ss.sss a' }}</td>
+                                            <td>{{ setting.modifier.userName }}</td>
+                                        </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="!icvm.isBusy && icvm.changes.modifiedParts.length > 0">
+        <div class="col-sm-12">
+            <h4>Modified Parts</h4>
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Config</th>
+                            <th>Part Name</th>
+                            <th>Description</th>
+                            <th>Document #</th>
+                            <th>Dash #</th>
+                            <th>Revision</th>
+                            <th>Serial #</th>
+                            <th>SAP Part Type</th>
+                            <th>SAP Part #</th>
+                            <th>Mfg Part #</th>
+                            <th>Modified</th>
+                            <th>Modifier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat-start="partVersion in icvm.changes.modifiedParts" class="from-part">
+                            <td><span class="label label-primary text-center">{{ icvm.changes.fromCommit.revision }}</span></td>
+                            <td>{{ partVersion.from.name }}</td>
+                            <td>{{ partVersion.from.description }}</td>
+                            <td>{{ partVersion.from.documentNumber }}</td>
+                            <td>{{ partVersion.from.dashNumber }}</td>
+                            <td>{{ partVersion.from.revisionNumber }}</td>
+                            <td>{{ partVersion.from.serialNumber }}</td>
+                            <td>{{ partVersion.from.sapPartType.name }}</td>
+                            <td>{{ partVersion.from.sapPartNumber }}</td>
+                            <td>{{ partVersion.from.mfgPartNumber }}</td>
+                            <td data-toggle="tooltip" title="{{ partVersion.from.modifiedDate | date: 'hh:mm:ss.sss a' }}">{{ partVersion.from.modifiedDate | date: 'MM/dd/yyyy hh:mm:ss a' }}</td>
+                            <td>{{ partVersion.from.modifier }}</td>
+                        </tr>
+                        <tr class="no-border" ng-if="partVersion.from.metadata.length > 0">
+                            <td colspan="2" class="text-right"><h5>Settings</h5></td>
+                            <td colspan="6">
+                                <table class="table table-condensed settings">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter Name</th>
+                                            <th>Parameter Value</th>
+                                            <th>Modified</th>
+                                            <th>Modifier</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="setting in partVersion.from.metadata">
+                                            <td>{{ setting.metaKey }}</td>
+                                            <td>{{ setting.metaValue }}</td>
+                                            <td>{{ setting.modifiedDate | date: 'hh:mm:ss.sss a' }}</td>
+                                            <td>{{ setting.modifier.userName }}</td>
+                                        </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="to-part">
+                            <td><span class="label label-success text-center">{{ icvm.changes.toCommit.revision }}</span></td>
+                            <td ng-class="{'field-changed': partVersion.to.name !== partVersion.from.name}">
+                                {{ partVersion.to.name }}
+                            </td>
+                            <td ng-class="{'field-changed': partVersion.to.description !== partVersion.from.description}">
+                                {{ partVersion.to.description }}
+                            </td>
+                            <td ng-class="{'field-changed': partVersion.to.documentNumber !== partVersion.from.documentNumber}">
+                                {{ partVersion.to.documentNumber }}
+                            </td>
+                            <td ng-class="{'field-changed': partVersion.to.dashNumber !== partVersion.from.dashNumber}">
+                                {{ partVersion.to.dashNumber }}
+                            </td>
+                            <td ng-class="{'field-changed': partVersion.to.revisionNumber !== partVersion.from.revisionNumber}">
+                                {{ partVersion.to.revisionNumber }}
+                            </td>
+                            <td ng-class="{'field-changed': partVersion.to.serialNumber !== partVersion.from.serialNumber}">
+                                {{ partVersion.to.serialNumber }}
+                            </td>
+                            <td ng-class="{'field-changed': partVersion.to.sapPartType.partTypeId !== partVersion.from.sapPartType.partTypeId}">
+                                {{ partVersion.to.sapPartType.name }}
+                            </td>
+                            <td ng-class="{'field-changed': partVersion.to.sapPartNumber !== partVersion.from.sapPartNumber}">
+                                {{ partVersion.to.sapPartNumber }}
+                            </td>
+                            <td ng-class="{'field-changed': partVersion.to.mfgPartNumber !== partVersion.from.mfgPartNumber}">
+                                {{ partVersion.to.mfgPartNumber }}
+                            </td>
+                            <td data-toggle="tooltip" title="{{ partVersion.to.modifiedDate | date: 'hh:mm:ss.sss a' }}">{{ partVersion.to.modifiedDate | date: 'MM/dd/yyyy hh:mm:ss a' }}</td>
+                            <td>{{ partVersion.to.modifier }}</td>
+                        </tr>
+                        <tr ng-repeat-end ng-if="partVersion.to.metadata.length > 0" class="no-border">
+                            <td colspan="2" class="text-right"><h5>Settings</h5></td>
+                            <td colspan="6">
+                                <table class="table table-condensed settings">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter Name</th>
+                                            <th>Parameter Value</th>
+                                            <th>Modified</th>
+                                            <th>Modifier</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="setting in partVersion.to.metadata">
+                                            <td>{{ setting.metaKey }}</td>
+                                            <td>{{ setting.metaValue }}</td>
+                                            <td>{{ setting.modifiedDate | date: 'hh:mm:ss.sss a' }}</td>
+                                            <td>{{ setting.modifier.userName }}</td>
+                                        </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

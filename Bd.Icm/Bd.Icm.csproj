@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1059138B-6CDC-4F63-AEE3-1C174A125C73}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bd.Icm</RootNamespace>
+    <AssemblyName>Bd.Icm</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release - WHC|AnyCPU'">
+    <OutputPath>bin\Release - WHC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csla, Version=4.6.300.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSLA-Core.4.6.300\lib\net46\Csla.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.0.5\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountDisabledException.cs" />
+    <Compile Include="AuthenticationException.cs" />
+    <Compile Include="BdPrincipal.cs" />
+    <Compile Include="Criteria\DeletedPartCriteria.cs" />
+    <Compile Include="Criteria\InstrumentPartSearchCriteria.cs" />
+    <Compile Include="Criteria\InstrumentPartChangesCriteria.cs" />
+    <Compile Include="Criteria\InstrumentUserCriteria.cs" />
+    <Compile Include="Criteria\PartParentIdVersionCriteria.cs" />
+    <Compile Include="Criteria\VersionedCriteria.cs" />
+    <Compile Include="ExcelExporter.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Helper\Encryption.cs" />
+    <Compile Include="Helper\ExtensionMethods.cs" />
+    <Compile Include="ChangeUser.cs" />
+    <Compile Include="ChangeUserList.cs" />
+    <Compile Include="ICommitable.cs" />
+    <Compile Include="InstrumentCommitInfo.cs" />
+    <Compile Include="InstrumentCommitUow.cs" />
+    <Compile Include="InstrumentDiff.cs" />
+    <Compile Include="InstrumentCommitList.cs" />
+    <Compile Include="IPart.cs" />
+    <Compile Include="UserRoles.cs" />
+    <Compile Include="UserRole.cs" />
+    <Compile Include="PartMetadataChange.cs" />
+    <Compile Include="PartChangeList.cs" />
+    <Compile Include="PartMetadataChanges.cs" />
+    <Compile Include="PartVersion.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="UserList.cs" />
+    <Compile Include="PartChange.cs" />
+    <Compile Include="PartSearch.cs" />
+    <Compile Include="PartSearchResult.cs" />
+    <Compile Include="PartMetadata.cs" />
+    <Compile Include="PartMetadatas.cs" />
+    <Compile Include="PartList.cs" />
+    <Compile Include="PartInfo.cs" />
+    <Compile Include="PartNodeList.cs" />
+    <Compile Include="PartNode.cs" />
+    <Compile Include="PartActions.cs" />
+    <Compile Include="InstrumentCommit.cs" />
+    <Compile Include="PartChanges.cs" />
+    <Compile Include="Rules\ParentIdRequired.cs" />
+    <Compile Include="Part.cs" />
+    <Compile Include="IReferenceObject.cs" />
+    <Compile Include="IRoleInfo.cs" />
+    <Compile Include="Parts.cs" />
+    <Compile Include="IVersionedObject.cs" />
+    <Compile Include="Rules\EnumRequired.cs" />
+    <Compile Include="Rules\EnumValid.cs" />
+    <Compile Include="Rules\ObjectRequired.cs" />
+    <Compile Include="Rules\ReferenceRequired.cs" />
+    <Compile Include="PartAction.cs" />
+    <Compile Include="UserInfo.cs" />
+    <Compile Include="VersionedObject.cs" />
+    <Compile Include="DataObject.cs" />
+    <Compile Include="IDataObject.cs" />
+    <Compile Include="InstrumentInfo.cs" />
+    <Compile Include="InstrumentList.cs" />
+    <Compile Include="Criteria\IdVersionCriteria.cs" />
+    <Compile Include="Instrument.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\RegExPatterns.cs" />
+    <Compile Include="User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\CSLA-Core.4.6.300\analyzers\c#\Csla.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Bd.Icm.Core\Bd.Icm.Core.csproj">
+      <Project>{274bfb7e-177a-4ee1-af30-3559080b07c1}</Project>
+      <Name>Bd.Icm.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bd.Icm.DataAccess\Bd.Icm.DataAccess.csproj">
+      <Project>{e34b6bd8-722b-4724-860f-14b25dee1abe}</Project>
+      <Name>Bd.Icm.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

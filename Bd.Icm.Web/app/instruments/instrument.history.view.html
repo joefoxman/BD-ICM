@@ -1,0 +1,49 @@
+﻿<div ng-include="'app/common/spinner.html'" ng-show="ihvm.isBusy"></div>
+<div class="animated fadeIn" ng-hide="ihvm.isBusy">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Commit History</h2>
+        </div>
+    </div>
+    <div class="row" ng-show="!ihvm.isBusy && ihvm.commits && ihvm.commits.length === 0">
+        <div class="col-sm-12">
+            <h3>No commits.</h3>
+        </div>
+    </div>
+    <div class="row" ng-show="!ihvm.isBusy && ihvm.commits && ihvm.commits.length > 0">
+        <div class="col-sm-12 col-md-10 col-lg-8">
+            <div class="table-responsive">
+                <table class="table table-condensed table-stripped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <button class="btn btn-info btn-sm" ng-disabled="!ihvm.canDiff()" ng-click="ihvm.compare()">Compare</button>
+                            </th>
+                            <th class="text-center">Configuration</th>
+                            <th>Committed</th>
+                            <th>Committed By</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="commit in ihvm.commits">
+                            <td>
+                                <a ng-click="ihvm.exportToExcel(commit)" class="btn btn-sm btn-info">
+                                    <i class="fa fa-file-excel-o"></i> Export
+                                </a>
+                            </td>
+                            <td>
+                                <input class="checkbox" type="checkbox" ng-model="commit.isSelected"/>
+                            </td>
+                            <td class="text-center">{{ commit.revision }}</td>
+                            <td data-toggle="tooltip" title="{{ commit.createdDate | date: 'hh:mm:ss.sss a' }}">{{ commit.createdDate | date: 'MM/dd/yyyy hh:mm:ss a' }}</td>
+                            <td>{{ commit.creator }}</td>
+                            <td>{{ commit.notes }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

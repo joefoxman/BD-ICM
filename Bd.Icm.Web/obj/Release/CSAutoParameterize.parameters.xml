@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="BdIcmEntities-Web.config Connection String" description="BdIcmEntities Connection String used in web.config by the application to access the database." defaultValue="&#xD;&#xA;           metadata=res://*/Database.IcmModel.csdl|res://*/Database.IcmModel.ssdl|res://*/Database.IcmModel.msl;provider=System.Data.SqlClient;provider connection string=&#xD;&#xA;           &quot;server=;&#xD;&#xA;           database=bdconfigurationqa;&#xD;&#xA;           integrated security=False;&#xD;&#xA;           MultipleActiveResultSets=True;&#xD;&#xA;           User ID=Bdlcm_App;&#xD;&#xA;           Password=6AdKjWfsqY7a;&#xD;&#xA;           Encrypt=True;&#xD;&#xA;           TrustServerCertificate=False;&#xD;&#xA;           Connection Timeout=30;&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\BD-MOM\\Bd\.Icm\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BdIcmEntities']/@connectionString" />
+  </parameter>
+</parameters>

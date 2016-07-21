@@ -1,0 +1,35 @@
+2016-04-20 11:06:30.3488 INFO /api/users/current
+2016-04-20 11:06:30.6709 INFO /api/users/current
+2016-04-20 11:06:37.1076 INFO /api/users/current
+2016-04-20 11:06:37.4366 INFO /api/users/current
+2016-04-20 11:06:50.9397 INFO /api/users/current
+2016-04-20 11:06:51.1117 INFO /api/users/current
+2016-04-20 11:08:12.5325 ERROR Csla.Rules.ValidationException: Object is not valid and can not be saved
+   at Csla.BusinessBase`1.Save()
+   at Bd.Icm.Web.Controllers.InstrumentCommitController.Post(CommitData commitData) in C:\Projects\BD-MOM\Bd.Icm.Web\Controllers\InstrumentCommitController.cs:line 50
+2016-04-20 11:08:16.0616 ERROR Csla.Rules.ValidationException: Object is not valid and can not be saved
+   at Csla.BusinessBase`1.Save()
+   at Bd.Icm.Web.Controllers.InstrumentCommitController.Post(CommitData commitData) in C:\Projects\BD-MOM\Bd.Icm.Web\Controllers\InstrumentCommitController.cs:line 50
+2016-04-20 11:08:27.2786 INFO /api/users/current
+2016-04-20 11:08:37.1860 INFO /api/users/current
+2016-04-20 11:08:51.5764 INFO /api/users/current
+2016-04-20 11:09:09.7308 INFO /api/users/current
+2016-04-20 11:09:26.1263 INFO /api/users/current
+2016-04-20 11:11:32.2586 ERROR Csla.Rules.ValidationException: Object is not valid and can not be saved
+   at Csla.BusinessBase`1.Save()
+   at Bd.Icm.Web.Controllers.InstrumentCommitController.Post(CommitData commitData) in C:\Projects\BD-MOM\Bd.Icm.Web\Controllers\InstrumentCommitController.cs:line 50
+2016-04-20 11:18:56.2124 INFO /api/users/current
+2016-04-20 11:18:56.3934 INFO /api/users/current
+2016-04-20 11:18:58.2201 INFO /api/users/current
+2016-04-20 11:19:11.8314 INFO /api/users/current
+2016-04-20 11:21:16.8837 INFO /api/users/current
+2016-04-20 11:22:49.1500 INFO /api/users/current
+2016-04-20 11:22:52.1957 INFO /api/users/current
+2016-04-20 11:23:15.2497 INFO /api/users/current
+2016-04-20 11:23:15.4874 INFO /api/users/current
+2016-04-20 11:23:27.3109 INFO /api/users/current
+2016-04-20 11:26:00.0030 INFO /api/users
+2016-04-20 11:26:06.4014 INFO /api/users
+2016-04-20 11:27:38.0624 INFO /api/users/current
+2016-04-20 11:28:02.5194 INFO /api/users/current
+2016-04-20 11:28:16.3281 INFO /api/users/current

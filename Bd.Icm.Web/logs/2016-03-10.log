@@ -1,0 +1,54 @@
+2016-03-10 17:08:18.0064 ERROR Csla.DataPortalException: DataPortal.Update failed (DataPortal.Fetch failed (Record not found.)) ---> Csla.Reflection.CallMethodException: Instrument.DataPortal_Insert method call failed ---> Csla.DataPortalException: DataPortal.Fetch failed (Record not found.) ---> Csla.Reflection.CallMethodException: User.DataPortal_Fetch method call failed ---> Bd.Icm.DataAccess.RecordNotFoundException: Record not found.
+   at Bd.Icm.User.DataPortal_Fetch(String username) in C:\Projects\BD-MOM\Bd.Icm\User.cs:line 186
+   at lambda_method(Closure , Object , Object[] )
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   --- End of inner exception stack trace ---
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__50.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__48.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.LateBoundObject.<CallMethodTryAsync>d__11.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter.GetResult()
+   at Csla.Server.SimpleDataPortal.<Fetch>d__1.MoveNext()
+   --- End of inner exception stack trace ---
+   at Csla.DataPortal`1.Fetch(Type objectType, Object criteria)
+   at Csla.DataPortal`1.Fetch(Object criteria)
+   at Csla.DataPortal.Fetch[T](Object criteria)
+   at Bd.Icm.User.GetUser(String username) in C:\Projects\BD-MOM\Bd.Icm\User.cs:line 143
+   at Bd.Icm.User.get_Current() in C:\Projects\BD-MOM\Bd.Icm\User.cs:line 76
+   at Bd.Icm.VersionedObject`1.SetDataStamps() in C:\Projects\BD-MOM\Bd.Icm\VersionedObject.cs:line 71
+   at Bd.Icm.Instrument.DataPortal_Insert() in C:\Projects\BD-MOM\Bd.Icm\Instrument.cs:line 119
+   at lambda_method(Closure , Object , Object[] )
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   --- End of inner exception stack trace ---
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__50.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__49.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.LateBoundObject.<CallMethodTryAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter.GetResult()
+   at Csla.Server.SimpleDataPortal.<Update>d__2.MoveNext()
+   --- End of inner exception stack trace ---
+   at Csla.BusinessBase`1.Save()
+   at Bd.Icm.Web.Controllers.InstrumentController.Post(Instrument dto) in C:\Projects\BD-MOM\Bd.Icm.Web\Controllers\InstrumentController.cs:line 53
+

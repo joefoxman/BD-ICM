@@ -1,0 +1,72 @@
+2016-04-13 10:57:08.5586 INFO /api/users/current
+2016-04-13 11:49:54.7889 INFO /api/users/current
+2016-04-13 11:49:55.1389 INFO /api/users/current
+2016-04-13 11:50:00.5998 INFO /api/users/current
+2016-04-13 11:50:00.8118 INFO /api/users/current
+2016-04-13 11:50:05.9630 INFO /api/users/current
+2016-04-13 11:50:30.7855 INFO /api/users/current
+2016-04-13 11:50:30.9605 INFO /api/users/current
+2016-04-13 16:21:30.3908 INFO /api/users/current
+2016-04-13 16:21:30.7218 INFO /api/users/current
+2016-04-13 16:21:59.3067 INFO /api/users/current
+2016-04-13 16:45:27.4385 INFO /api/users/current
+2016-04-13 16:45:27.7545 INFO /api/users/current
+2016-04-13 16:45:36.0656 INFO /api/users/current
+2016-04-13 16:45:55.9607 INFO /api/users/current
+2016-04-13 16:46:36.3541 ERROR Csla.DataPortalException: DataPortal.Fetch failed (Exception of type 'Bd.Icm.DataAccess.RecordNotFoundException' was thrown.) ---> Csla.Reflection.CallMethodException: Part.DataPortal_Fetch method call failed ---> Bd.Icm.DataAccess.RecordNotFoundException: Exception of type 'Bd.Icm.DataAccess.RecordNotFoundException' was thrown.
+   at Bd.Icm.Part.DataPortal_Fetch(DeletedPartCriteria criteria) in C:\Projects\BD-MOM\Bd.Icm\Part.cs:line 311
+   at lambda_method(Closure , Object , Object[] )
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   --- End of inner exception stack trace ---
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__50.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__48.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.LateBoundObject.<CallMethodTryAsync>d__11.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter.GetResult()
+   at Csla.Server.SimpleDataPortal.<Fetch>d__1.MoveNext()
+   --- End of inner exception stack trace ---
+   at Csla.DataPortal`1.Fetch(Type objectType, Object criteria)
+   at Csla.DataPortal`1.Fetch(Object criteria)
+   at Csla.DataPortal.Fetch[T](Object criteria)
+   at Bd.Icm.Part.GetDeletedPart(Int32 id) in C:\Projects\BD-MOM\Bd.Icm\Part.cs:line 258
+   at Bd.Icm.InstrumentDiff.<CompareParts>d__15.MoveNext() in C:\Projects\BD-MOM\Bd.Icm\InstrumentDiff.cs:line 43
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at Bd.Icm.InstrumentDiff.<CompareParts>d__15.MoveNext() in C:\Projects\BD-MOM\Bd.Icm\InstrumentDiff.cs:line 62
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at Bd.Icm.InstrumentDiff.<CompareAsync>d__14.MoveNext() in C:\Projects\BD-MOM\Bd.Icm\InstrumentDiff.cs:line 32
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at Bd.Icm.Web.Controllers.InstrumentController.<Compare>d__8.MoveNext() in C:\Projects\BD-MOM\Bd.Icm.Web\Controllers\InstrumentController.cs:line 104
+
+2016-04-13 16:46:42.4672 INFO /api/users
+2016-04-13 16:47:03.5247 INFO /api/users/current
+2016-04-13 16:47:45.4756 INFO /api/users
+2016-04-13 16:47:59.2935 INFO /api/users
+2016-04-13 16:48:09.1650 INFO /api/users/current
+2016-04-13 16:48:09.3660 INFO /api/users/current
+2016-04-13 16:48:19.8685 INFO /api/users/current
+2016-04-13 17:05:34.2008 INFO /api/users/current
+2016-04-13 17:05:34.5038 INFO /api/users/current
+2016-04-13 17:07:03.9808 INFO /api/users/current
+2016-04-13 17:07:04.3618 INFO /api/users/current
+2016-04-13 17:07:09.9803 INFO /api/users/current
+2016-04-13 17:07:33.9988 INFO /api/users/current

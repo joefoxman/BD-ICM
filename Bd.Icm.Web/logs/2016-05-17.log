@@ -1,0 +1,89 @@
+2016-05-17 07:42:18.3316 TRACE Login:Admin|1|c4ca4238a0b923820dcc509a6f75849b
+2016-05-17 07:42:23.2706 INFO /api/users/current
+2016-05-17 07:42:23.6286 INFO /api/users/current
+2016-05-17 07:42:54.2470 INFO /api/users/current
+2016-05-17 07:48:10.4676 INFO /api/users/current
+2016-05-17 07:48:36.7256 INFO /api/users/current
+2016-05-17 15:02:02.5895 INFO /api/users/current
+2016-05-17 15:02:03.1405 INFO /api/users/current
+2016-05-17 15:02:16.5974 INFO /api/users/current
+2016-05-17 15:02:38.7300 INFO /api/users/current
+2016-05-17 16:09:15.3220 INFO /api/users/current
+2016-05-17 16:09:15.7460 INFO /api/users/current
+2016-05-17 16:25:33.3472 INFO /api/users/current
+2016-05-17 16:25:33.7892 INFO /api/users/current
+2016-05-17 16:25:38.7420 INFO /api/users
+2016-05-17 16:25:44.3509 INFO /api/users/create
+2016-05-17 16:25:44.4840 ERROR 
+
+Mapping types:
+User -> RoleType[]
+Bd.Icm.User -> Bd.Icm.Core.RoleType[]
+
+Destination path:
+User.Roles
+
+Source value:
+Bd.Icm.User
+2016-05-17 16:25:59.7375 INFO /api/users
+2016-05-17 16:26:01.1124 INFO /api/users/create
+2016-05-17 16:26:32.1488 ERROR 
+
+Mapping types:
+User -> RoleType[]
+Bd.Icm.User -> Bd.Icm.Core.RoleType[]
+
+Destination path:
+User.Roles
+
+Source value:
+Bd.Icm.User
+2016-05-17 16:26:36.3258 INFO /api/users
+2016-05-17 16:26:37.8832 INFO /api/users/create
+2016-05-17 16:34:48.2523 INFO /api/users/current
+2016-05-17 16:34:48.3933 ERROR Missing type map configuration or unsupported mapping.
+
+Mapping types:
+User -> User
+Bd.Icm.User -> Bd.Icm.Web.Dto.User
+
+Destination path:
+User
+
+Source value:
+Bd.Icm.User
+2016-05-17 16:34:55.7418 INFO /api/users/current
+2016-05-17 16:34:55.8258 ERROR Missing type map configuration or unsupported mapping.
+
+Mapping types:
+User -> User
+Bd.Icm.User -> Bd.Icm.Web.Dto.User
+
+Destination path:
+User
+
+Source value:
+Bd.Icm.User
+2016-05-17 16:41:38.7783 INFO /api/users/current
+2016-05-17 16:41:39.2073 INFO /api/users/current
+2016-05-17 16:41:58.2869 INFO /api/users
+2016-05-17 16:41:59.6816 INFO /api/users/create
+2016-05-17 16:42:24.9204 ERROR 
+
+Mapping types:
+User -> RoleType[]
+Bd.Icm.User -> Bd.Icm.Core.RoleType[]
+
+Destination path:
+User.Roles
+
+Source value:
+Bd.Icm.User
+2016-05-17 17:35:39.9343 TRACE Login:Admin|1|c4ca4238a0b923820dcc509a6f75849b
+2016-05-17 17:35:44.4323 INFO /api/users/current
+2016-05-17 17:35:44.8463 INFO /api/users/current
+2016-05-17 17:35:46.3846 INFO /api/users
+2016-05-17 17:35:48.8315 INFO /api/users/create
+2016-05-17 17:36:07.2652 INFO /api/users
+2016-05-17 17:36:09.3136 INFO /api/users/create
+2016-05-17 17:36:11.2564 INFO /api/users

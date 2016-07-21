@@ -1,0 +1,879 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BdIcmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BdIcm.dbo.DbVersion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DbVersion">
+    <Key>
+      <PropertyRef Name="DbVersion" />
+      <PropertyRef Name="ModifiedDate" />
+      <PropertyRef Name="ModifiedBy" />
+    </Key>
+    <Property Name="DbVersion" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Instrument">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RowVersion" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="NickName" Type="nvarchar" MaxLength="150" />
+    <Property Name="SerialNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="EffectiveFrom" Type="int" Nullable="false" />
+    <Property Name="EffectiveTo" Type="int" Nullable="false" />
+    <Property Name="SapPartType" Type="int" />
+    <Property Name="ModificationType" Type="int" Nullable="false" />
+    <Property Name="MajorRevision" Type="int" Nullable="false" />
+    <Property Name="MinorRevision" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstrumentCommit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InstrumentId" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="255" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Revision" Type="int" Nullable="false" />
+    <Property Name="EffectiveTo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstrumentVersion">
+    <Key>
+      <PropertyRef Name="InstrumentId" />
+    </Key>
+    <Property Name="InstrumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Part">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RowVersion" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentPartId" Type="int" />
+    <Property Name="InstrumentId" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="SerialNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="DocumentNumber" Type="nvarchar" MaxLength="50" Nullable="true" />
+    <Property Name="DashNumber" Type="int" Nullable="true" />
+    <Property Name="RevisionNumber" Type="int" Nullable="false" />
+    <Property Name="SapPartNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="SapPartType" Type="int" Nullable="false" />
+    <Property Name="LotCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="EffectiveFrom" Type="int" Nullable="false" />
+    <Property Name="EffectiveTo" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="InstrumentCommitId" Type="int" />
+    <Property Name="ModificationType" Type="int" Nullable="false" />
+    <Property Name="MfgPartNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Manufacturer" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="PartAction">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RowVersion" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PartId" Type="int" Nullable="false" />
+    <Property Name="Action" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="ActionDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="EffectiveFrom" Type="int" Nullable="false" />
+    <Property Name="EffectiveTo" Type="int" Nullable="false" />
+    <Property Name="ModificationType" Type="int" Nullable="false" />
+    <Property Name="InstrumentCommitId" Type="int" />
+  </EntityType>
+  <EntityType Name="PartActionVersion">
+    <Key>
+      <PropertyRef Name="PartActionId" />
+    </Key>
+    <Property Name="PartActionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PartMetadata">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="RowVersion" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PartId" Type="int" Nullable="false" />
+    <Property Name="MetaKey" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MetaValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="EffectiveFrom" Type="int" Nullable="false" />
+    <Property Name="EffectiveTo" Type="int" Nullable="false" />
+    <Property Name="ModificationType" Type="int" Nullable="false" />
+    <Property Name="InstrumentCommitId" Type="int" />
+  </EntityType>
+  <EntityType Name="PartMetadataVersion">
+    <Key>
+      <PropertyRef Name="PartMetadataId" />
+    </Key>
+    <Property Name="PartMetadataId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PartVersion">
+    <Key>
+      <PropertyRef Name="PartId" />
+    </Key>
+    <Property Name="PartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsDisabled" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsDisabled" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Role" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_DbVersion_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="DbVersion" Type="Self.DbVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DbVersion">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instrument_InstrumentVersion">
+    <End Role="InstrumentVersion" Type="Self.InstrumentVersion" Multiplicity="1" />
+    <End Role="Instrument" Type="Self.Instrument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentVersion">
+        <PropertyRef Name="InstrumentId" />
+      </Principal>
+      <Dependent Role="Instrument">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instrument_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Instrument" Type="Self.Instrument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Instrument">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Instrument_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Instrument" Type="Self.Instrument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Instrument">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentCommit_InstrumentVersion">
+    <End Role="InstrumentVersion" Type="Self.InstrumentVersion" Multiplicity="1" />
+    <End Role="InstrumentCommit" Type="Self.InstrumentCommit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentVersion">
+        <PropertyRef Name="InstrumentId" />
+      </Principal>
+      <Dependent Role="InstrumentCommit">
+        <PropertyRef Name="InstrumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentCommit_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="InstrumentCommit" Type="Self.InstrumentCommit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstrumentCommit">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentCommit_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="InstrumentCommit" Type="Self.InstrumentCommit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstrumentCommit">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentVersion_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="InstrumentVersion" Type="Self.InstrumentVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstrumentVersion">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentVersion_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="InstrumentVersion" Type="Self.InstrumentVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InstrumentVersion">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_InstrumentCommit">
+    <End Role="InstrumentCommit" Type="Self.InstrumentCommit" Multiplicity="0..1" />
+    <End Role="Part" Type="Self.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentCommit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="InstrumentCommitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_InstrumentVersion">
+    <End Role="InstrumentVersion" Type="Self.InstrumentVersion" Multiplicity="0..1" />
+    <End Role="Part" Type="Self.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentVersion">
+        <PropertyRef Name="InstrumentId" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="InstrumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_Part_Parent">
+    <End Role="PartVersion" Type="Self.PartVersion" Multiplicity="0..1" />
+    <End Role="Part" Type="Self.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartVersion">
+        <PropertyRef Name="PartId" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="ParentPartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_PartVersion">
+    <End Role="PartVersion" Type="Self.PartVersion" Multiplicity="1" />
+    <End Role="Part" Type="Self.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartVersion">
+        <PropertyRef Name="PartId" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Part" Type="Self.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Part_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Part" Type="Self.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartAction_InstrumentCommit">
+    <End Role="InstrumentCommit" Type="Self.InstrumentCommit" Multiplicity="0..1" />
+    <End Role="PartAction" Type="Self.PartAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentCommit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartAction">
+        <PropertyRef Name="InstrumentCommitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartAction_PartActionVersion">
+    <End Role="PartActionVersion" Type="Self.PartActionVersion" Multiplicity="1" />
+    <End Role="PartAction" Type="Self.PartAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartActionVersion">
+        <PropertyRef Name="PartActionId" />
+      </Principal>
+      <Dependent Role="PartAction">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartAction_PartVersion">
+    <End Role="PartVersion" Type="Self.PartVersion" Multiplicity="1" />
+    <End Role="PartAction" Type="Self.PartAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartVersion">
+        <PropertyRef Name="PartId" />
+      </Principal>
+      <Dependent Role="PartAction">
+        <PropertyRef Name="PartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartAction_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PartAction" Type="Self.PartAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartAction">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartAction_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PartAction" Type="Self.PartAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartAction">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartActionVersion_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PartActionVersion" Type="Self.PartActionVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartActionVersion">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartActionVersion_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PartActionVersion" Type="Self.PartActionVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartActionVersion">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadata_InstrumentCommit">
+    <End Role="InstrumentCommit" Type="Self.InstrumentCommit" Multiplicity="0..1" />
+    <End Role="PartMetadata" Type="Self.PartMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstrumentCommit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartMetadata">
+        <PropertyRef Name="InstrumentCommitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadata_PartMetadataVersion">
+    <End Role="PartMetadataVersion" Type="Self.PartMetadataVersion" Multiplicity="1" />
+    <End Role="PartMetadata" Type="Self.PartMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartMetadataVersion">
+        <PropertyRef Name="PartMetadataId" />
+      </Principal>
+      <Dependent Role="PartMetadata">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadata_PartVersion">
+    <End Role="PartVersion" Type="Self.PartVersion" Multiplicity="1" />
+    <End Role="PartMetadata" Type="Self.PartMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartVersion">
+        <PropertyRef Name="PartId" />
+      </Principal>
+      <Dependent Role="PartMetadata">
+        <PropertyRef Name="PartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadata_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PartMetadata" Type="Self.PartMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartMetadata">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadata_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PartMetadata" Type="Self.PartMetadata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartMetadata">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadataVersion_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PartMetadataVersion" Type="Self.PartMetadataVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartMetadataVersion">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartMetadataVersion_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PartMetadataVersion" Type="Self.PartMetadataVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartMetadataVersion">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartVersion_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PartVersion" Type="Self.PartVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartVersion">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartVersion_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="PartVersion" Type="Self.PartVersion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartVersion">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Role_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Role" Type="Self.Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Role_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Role" Type="Self.Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User1" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User1" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User_Creator">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User_Modifier">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="spFetchInstrumentChanges" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InstrumentId" Type="int" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spFetchPartHeirarchy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PartId" Type="int" Mode="In" />
+    <Parameter Name="Version" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spFetchUncommittedMetadataChanges" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InstrumentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spFetchUncommittedPartChanges" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InstrumentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spFetchUsersWithUncommitedChanges" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InstrumentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetNextDbVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ModifiedBy" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spSearchInstrumentParts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InstrumentId" Type="int" Mode="In" />
+    <Parameter Name="Version" Type="int" Mode="In" />
+    <Parameter Name="SearchKey" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="BdIcmModelStoreContainer">
+    <EntitySet Name="Instrument" EntityType="Self.Instrument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InstrumentCommit" EntityType="Self.InstrumentCommit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InstrumentVersion" EntityType="Self.InstrumentVersion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Part" EntityType="Self.Part" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartAction" EntityType="Self.PartAction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartActionVersion" EntityType="Self.PartActionVersion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartMetadata" EntityType="Self.PartMetadata" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartMetadataVersion" EntityType="Self.PartMetadataVersion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartVersion" EntityType="Self.PartVersion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DbVersion" EntityType="Self.DbVersion" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DbVersion].[DbVersion] AS [DbVersion], 
+    [DbVersion].[ModifiedDate] AS [ModifiedDate], 
+    [DbVersion].[ModifiedBy] AS [ModifiedBy]
+    FROM [dbo].[DbVersion] AS [DbVersion]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_DbVersion_User_Modifier" Association="Self.FK_DbVersion_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="DbVersion" EntitySet="DbVersion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instrument_InstrumentVersion" Association="Self.FK_Instrument_InstrumentVersion">
+      <End Role="InstrumentVersion" EntitySet="InstrumentVersion" />
+      <End Role="Instrument" EntitySet="Instrument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instrument_User_Creator" Association="Self.FK_Instrument_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="Instrument" EntitySet="Instrument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Instrument_User_Modifier" Association="Self.FK_Instrument_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="Instrument" EntitySet="Instrument" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentCommit_InstrumentVersion" Association="Self.FK_InstrumentCommit_InstrumentVersion">
+      <End Role="InstrumentVersion" EntitySet="InstrumentVersion" />
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentCommit_User_Creator" Association="Self.FK_InstrumentCommit_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentCommit_User_Modifier" Association="Self.FK_InstrumentCommit_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentVersion_User_Creator" Association="Self.FK_InstrumentVersion_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="InstrumentVersion" EntitySet="InstrumentVersion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentVersion_User_Modifier" Association="Self.FK_InstrumentVersion_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="InstrumentVersion" EntitySet="InstrumentVersion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_InstrumentCommit" Association="Self.FK_Part_InstrumentCommit">
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommit" />
+      <End Role="Part" EntitySet="Part" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_InstrumentVersion" Association="Self.FK_Part_InstrumentVersion">
+      <End Role="InstrumentVersion" EntitySet="InstrumentVersion" />
+      <End Role="Part" EntitySet="Part" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_Part_Parent" Association="Self.FK_Part_Part_Parent">
+      <End Role="PartVersion" EntitySet="PartVersion" />
+      <End Role="Part" EntitySet="Part" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_PartVersion" Association="Self.FK_Part_PartVersion">
+      <End Role="PartVersion" EntitySet="PartVersion" />
+      <End Role="Part" EntitySet="Part" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_User_Creator" Association="Self.FK_Part_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="Part" EntitySet="Part" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Part_User_Modifier" Association="Self.FK_Part_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="Part" EntitySet="Part" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartAction_InstrumentCommit" Association="Self.FK_PartAction_InstrumentCommit">
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommit" />
+      <End Role="PartAction" EntitySet="PartAction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartAction_PartActionVersion" Association="Self.FK_PartAction_PartActionVersion">
+      <End Role="PartActionVersion" EntitySet="PartActionVersion" />
+      <End Role="PartAction" EntitySet="PartAction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartAction_PartVersion" Association="Self.FK_PartAction_PartVersion">
+      <End Role="PartVersion" EntitySet="PartVersion" />
+      <End Role="PartAction" EntitySet="PartAction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartAction_User_Creator" Association="Self.FK_PartAction_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="PartAction" EntitySet="PartAction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartAction_User_Modifier" Association="Self.FK_PartAction_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="PartAction" EntitySet="PartAction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartActionVersion_User_Creator" Association="Self.FK_PartActionVersion_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="PartActionVersion" EntitySet="PartActionVersion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartActionVersion_User_Modifier" Association="Self.FK_PartActionVersion_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="PartActionVersion" EntitySet="PartActionVersion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadata_InstrumentCommit" Association="Self.FK_PartMetadata_InstrumentCommit">
+      <End Role="InstrumentCommit" EntitySet="InstrumentCommit" />
+      <End Role="PartMetadata" EntitySet="PartMetadata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadata_PartMetadataVersion" Association="Self.FK_PartMetadata_PartMetadataVersion">
+      <End Role="PartMetadataVersion" EntitySet="PartMetadataVersion" />
+      <End Role="PartMetadata" EntitySet="PartMetadata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadata_PartVersion" Association="Self.FK_PartMetadata_PartVersion">
+      <End Role="PartVersion" EntitySet="PartVersion" />
+      <End Role="PartMetadata" EntitySet="PartMetadata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadata_User_Creator" Association="Self.FK_PartMetadata_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="PartMetadata" EntitySet="PartMetadata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadata_User_Modifier" Association="Self.FK_PartMetadata_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="PartMetadata" EntitySet="PartMetadata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadataVersion_User_Creator" Association="Self.FK_PartMetadataVersion_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="PartMetadataVersion" EntitySet="PartMetadataVersion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartMetadataVersion_User_Modifier" Association="Self.FK_PartMetadataVersion_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="PartMetadataVersion" EntitySet="PartMetadataVersion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartVersion_User_Creator" Association="Self.FK_PartVersion_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="PartVersion" EntitySet="PartVersion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartVersion_User_Modifier" Association="Self.FK_PartVersion_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="PartVersion" EntitySet="PartVersion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Role_User_Creator" Association="Self.FK_Role_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="Role" EntitySet="Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Role_User_Modifier" Association="Self.FK_Role_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="Role" EntitySet="Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User_Creator" Association="Self.FK_User_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="User1" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User_Modifier" Association="Self.FK_User_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="User1" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User_Creator" Association="Self.FK_UserRole_User_Creator">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User_Modifier" Association="Self.FK_UserRole_User_Modifier">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

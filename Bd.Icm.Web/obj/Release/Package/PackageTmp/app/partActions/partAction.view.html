@@ -1,0 +1,62 @@
+﻿<div class="modal-header">
+    <h3>Part Action</h3>
+</div>
+<div class="modal-body">
+    <div ng-show="pavm.modelErrors.length > 0">
+        <ul class="validation-summary-errors">
+            <li ng-repeat="error in pavm.modelErrors">{{ error }}</li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="well">
+                <div class="row">
+                    <form name="actionForm" role="form" class="form-horizontal">
+                        <div class="col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : actionForm.action.$invalid }">
+                                <label for="action" class="col-sm-4 control-label">Action:</label>
+                                <div class="col-sm-8">
+                                    <select id="action" name="action" class="form-control" required
+                                            ng-model="pavm.partAction.action"
+                                            ng-options="c.name for c in pavm.actionTypes track by c.partActionTypeId"
+                                            ng-disabled="pavm.isReadOnly() || pavm.partAction.id > 0"></select>
+                                    <span class="help-block" ng-show="actionForm.action.$error.required">Action is required.</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : actionForm.description.$invalid }">
+                                <label for="description" class="control-label col-sm-4">Description:</label>
+                                <div class="col-sm-8">
+                                    <input id="description" name="description" type="text" maxlength="300" required
+                                           class="form-control" ng-model="pavm.partAction.description"
+                                           ng-disabled="pavm.isReadOnly() || pavm.partAction.id > 0" />
+                                    <span class="help-block" ng-show="actionForm.description.$error.required">Description is required.</span>
+                                    <span class="help-block" ng-show="actionForm.description.$error.maxlength">Description cannot exceed 300 characters.</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : actionForm.actionDate.$invalid }">
+                                <label for="actionDate" class="control-label col-md-4">Action date:</label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <input ng-model="pavm.partAction.actionDate" ng-required="true" uib-datepicker-popup="shortDate"
+                                                   class="form-control" id="actionDate" name="actionDate" is-open="pavm.actionDateOpened"
+                                                   ng-disabled="pavm.isReadOnly() || pavm.partAction.id > 0" />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" ng-click="pavm.openActionDate()"><i class="fa fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="help-block" ng-show="actionForm.actionDate.$error.required">Action date is required.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-if="!pavm.isReadOnly()" ng-click="pavm.save()" ng-disabled="!actionForm.$valid" ng-hide="pavm.partAction.id > 0">Save</button>
+    <button class="btn btn-default" ng-click="pavm.cancel()">{{ pavm.partAction.id > 0 ? 'Close' : 'Cancel' }}</button>
+</div>

@@ -1,0 +1,1 @@
+migrate.exe --connection "BdIcmEntitiesTest" --provider SqlServer2012 /target Bd.Icm.Migrations.dll --task migrate --configPath Bd.Icm.Migrations.dll.config

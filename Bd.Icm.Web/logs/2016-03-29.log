@@ -1,0 +1,28 @@
+2016-03-29 22:11:33.6039 ERROR AutoMapper.AutoMapperMappingException: 
+
+Mapping types:
+PartAction -> PartActionType
+Bd.Icm.PartAction -> Bd.Icm.Web.Dto.PartActionType
+
+Destination path:
+PartAction.Action
+
+Source value:
+Bd.Icm.PartAction ---> System.InvalidOperationException: Operation is not valid due to the current state of the object.
+   at Bd.Icm.Web.PartActionTypeResolver.ResolveCore(PartAction source) in C:\Projects\BD-MOM\Bd.Icm.Web\App_Start\AutoMapperConfig.cs:line 116
+   at AutoMapper.ValueResolver`2.Resolve(ResolutionResult source)
+   at AutoMapper.Internal.DeferredInstantiatedResolver.Resolve(ResolutionResult source)
+   at AutoMapper.PropertyMap.<>c.<ResolveValue>b__44_0(ResolutionResult current, IValueResolver resolver)
+   at System.Linq.Enumerable.Aggregate[TSource,TAccumulate](IEnumerable`1 source, TAccumulate seed, Func`3 func)
+   at AutoMapper.PropertyMap.ResolveValue(ResolutionContext context)
+   at AutoMapper.Mappers.TypeMapObjectMapperRegistry.PropertyMapMappingStrategy.MapPropertyValue(ResolutionContext context, Object mappedObject, PropertyMap propertyMap)
+   --- End of inner exception stack trace ---
+   at AutoMapper.Mappers.TypeMapObjectMapperRegistry.PropertyMapMappingStrategy.MapPropertyValue(ResolutionContext context, Object mappedObject, PropertyMap propertyMap)
+   at AutoMapper.Mappers.TypeMapObjectMapperRegistry.PropertyMapMappingStrategy.Map(ResolutionContext context)
+   at AutoMapper.MappingEngine.Map(ResolutionContext context)
+   at AutoMapper.Mapper.MapCore(Object source, Type sourceType, Type destinationType, MappingOperationOptions options)
+   at AutoMapper.Mapper.AutoMapper.IMapper.Map(Object source, Type sourceType, Type destinationType, Action`1 opts)
+   at AutoMapper.Mapper.AutoMapper.IMapper.Map[TDestination](Object source, Action`1 opts)
+   at AutoMapper.Mapper.AutoMapper.IMapper.Map[TDestination](Object source)
+   at AutoMapper.Mapper.Map[TDestination](Object source)
+   at Bd.Icm.Web.Controllers.PartActionController.Post(Int32 partId, PartAction dto) in C:\Projects\BD-MOM\Bd.Icm.Web\Controllers\PartActionController.cs:line 71

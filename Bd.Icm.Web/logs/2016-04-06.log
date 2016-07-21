@@ -1,0 +1,51 @@
+2016-04-06 14:28:05.1319 INFO /api/users/current
+2016-04-06 14:28:16.0482 ERROR Csla.DataPortalException: DataPortal.Fetch failed (The data reader is incompatible with the specified 'BdIcmModel.spFetchInstrumentChanges_Result'. A member of the type, 'EffectiveFrom', does not have a corresponding column in the data reader with the same name.) ---> Csla.Reflection.CallMethodException: PartChangeList.DataPortal_Fetch method call failed ---> System.Data.Entity.Core.EntityCommandExecutionException: The data reader is incompatible with the specified 'BdIcmModel.spFetchInstrumentChanges_Result'. A member of the type, 'EffectiveFrom', does not have a corresponding column in the data reader with the same name.
+   at System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.GetMemberOrdinalFromReader(DbDataReader storeDataReader, EdmMember member, EdmType currentType, Dictionary`2 renameList)
+   at System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.GetColumnMapsForType(DbDataReader storeDataReader, EdmType edmType, Dictionary`2 renameList)
+   at System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.CreateColumnMapFromReaderAndType(DbDataReader storeDataReader, EdmType edmType, EntitySet entitySet, Dictionary`2 renameList)
+   at System.Data.Entity.Core.Query.InternalTrees.ColumnMapFactory.CreateFunctionImportStructuralTypeColumnMap(DbDataReader storeDataReader, FunctionImportMappingNonComposable mapping, Int32 resultSetIndex, EntitySet entitySet, StructuralType baseStructuralType)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.FunctionColumnMapGenerator.System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.IColumnMapGenerator.CreateColumnMap(DbDataReader reader)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.CreateColumnMap(DbDataReader storeDataReader, Int32 resultSetIndex)
+   at System.Data.Entity.Core.Objects.ObjectContext.MaterializedDataRecord[TElement](EntityCommand entityCommand, DbDataReader storeReader, Int32 resultSetIndex, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ShaperFactory`1 shaperFactory, MergeOption mergeOption, Boolean streaming)
+   at System.Data.Entity.Core.Objects.ObjectContext.CreateFunctionObjectResult[TElement](EntityCommand entityCommand, ReadOnlyCollection`1 entitySets, EdmType[] edmTypes, ExecutionOptions executionOptions)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__46()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass47`1.<ExecuteFunction>b__45()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ExecutionOptions executionOptions, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, MergeOption mergeOption, ObjectParameter[] parameters)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteFunction[TElement](String functionName, ObjectParameter[] parameters)
+   at Bd.Icm.DataAccess.Database.BdIcmEntities.spFetchInstrumentChanges(Nullable`1 instrumentId, Nullable`1 startDate, Nullable`1 endDate) in C:\Projects\BD-MOM\Bd.Icm.DataAccess\Database\IcmModel.Context.cs:line 169
+   at Bd.Icm.DataAccess.InstrumentRepository.FetchChanges(Int32 instrumentId, Nullable`1 startDate, Nullable`1 endDate) in C:\Projects\BD-MOM\Bd.Icm.DataAccess\Repositories\InstrumentRepository.cs:line 17
+   at Bd.Icm.PartChangeList.DataPortal_Fetch(InstrumentPartChangesCriteria criteria) in C:\Projects\BD-MOM\Bd.Icm\PartChangeList.cs:line 31
+   at lambda_method(Closure , Object , Object[] )
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   --- End of inner exception stack trace ---
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__50.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__48.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.LateBoundObject.<CallMethodTryAsync>d__11.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter.GetResult()
+   at Csla.Server.SimpleDataPortal.<Fetch>d__1.MoveNext()
+   --- End of inner exception stack trace ---
+   at Csla.DataPortal`1.Fetch(Type objectType, Object criteria)
+   at Csla.DataPortal`1.Fetch(Object criteria)
+   at Csla.DataPortal.Fetch[T](Object criteria)
+   at Bd.Icm.PartChangeList.GetPartChangeList(Int32 instrumentId, Nullable`1 startDate, Nullable`1 endDate) in C:\Projects\BD-MOM\Bd.Icm\PartChangeList.cs:line 18
+   at Bd.Icm.Web.Controllers.InstrumentController.GetPartHistory(Int32 instrumentId) in C:\Projects\BD-MOM\Bd.Icm.Web\Controllers\InstrumentController.cs:line 85
+
+2016-04-06 14:28:49.0328 INFO /api/users/current
+2016-04-06 14:31:19.2686 INFO /api/users/current
+2016-04-06 14:31:22.5106 INFO /api/users/current
+2016-04-06 14:32:18.2924 INFO /api/users/current

@@ -1,0 +1,118 @@
+﻿<div ng-include="'app/common/spinner.html'" ng-show="ivm.isBusy"></div>
+<div class="animated fadeIn" ng-hide="ivm.isBusy">
+    <div ng-show="ivm.modelErrors.length > 0">
+        <ul class="validation-summary-errors">
+            <li ng-repeat="error in ivm.modelErrors">{{ error }}</li>
+        </ul>
+    </div>
+    <form class="form-horizontal" name="instrumentForm">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="well">
+                    <div class="form-group" ng-class="{ 'has-error' : instrumentForm.type.$invalid }">
+                        <label for="type" class="control-label col-sm-4">Type:</label>
+                        <div class="col-sm-8">
+                            <input id="type" name="type" type="text"
+                                   ng-disabled="nav.isReadOnly()"
+                                   required maxlength="200"
+                                   class="form-control" ng-model="ivm.instrument.type" />
+                            <span class="help-block" ng-show="instrumentForm.type.$error.required">Type is required.</span>
+                            <span class="help-block" ng-show="instrumentForm.type.$error.maxlength">Type cannot exceed 200 characters.</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : instrumentForm.instrumentType.$invalid }">
+                        <label for="instrumentType" class="control-label col-sm-4">SAP Part Type:</label>
+                        <div class="col-sm-8">
+                            <select id="sapPartType" name="instrumentType" class="form-control" required
+                                   ng-disabled="nav.isReadOnly()"
+                                    ng-model="ivm.instrument.sapPartType"
+                                    ng-options="c.name for c in ivm.instrumentTypes track by c.instrumentTypeId"></select>
+                            <span class="help-block" ng-show="instrumentForm.sapPartType.$error.required">Instrument type is required.</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : instrumentForm.nickName.$invalid }">
+                        <label for="nickName" class="control-label col-sm-4">Nickname:</label>
+                        <div class="col-sm-8">
+                            <input id="nickName" name="nickName" type="text"
+                                   ng-disabled="nav.isReadOnly()"
+                                   required maxlength="100"
+                                   class="form-control" ng-model="ivm.instrument.nickName" />
+                            <span class="help-block" ng-show="instrumentForm.nickName.$error.maxlength">Instrument Nickname cannot exceed 100 characters.</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : instrumentForm.serialNumber.$invalid }">
+                        <label for="serialNumber" class="control-label col-sm-4">Serial #:</label>
+                        <div class="col-sm-8">
+                            <input id="serialNumber" name="serialNumber" type="text" required maxlength="100"
+                                   ng-disabled="nav.isReadOnly()"
+                                   class="form-control" ng-model="ivm.instrument.serialNumber" />
+                            <span class="help-block" ng-show="instrumentForm.serialNumber.$error.required">Serial number is required.</span>
+                            <span class="help-block" ng-show="instrumentForm.serialNumber.$error.maxlength">Serial number cannot exceed 100 characters.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <button class="btn btn-success" ng-click="ivm.save()" ng-if="!nav.isReadOnly()" ng-disabled="!instrumentForm.$valid">Save</button>
+                            <button class="btn btn-success" ng-click="ivm.save(true)" ng-if="!nav.isReadOnly()" 
+                                    ng-disabled="!instrumentForm.$valid">Save &amp; Close</button>
+                            <a href="" class="btn btn-default" ui-sref="root.instruments">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12" ng-hide="ivm.instrument.isNew">
+                <div class="well">
+                    <h4>Parts &amp; Assemblies</h4>
+                    <a href="" class="btn btn-info"
+                       ng-if="!nav.isReadOnly()"
+                       ng-click="ivm.addPart()"><i class="fa fa-plus"> </i> Add part</a>
+                    <h5 ng-show="ivm.instrument.parts.length === 0">No parts or assemblies.</h5>
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-hover table-striped" ng-hide="ivm.instrument.parts.length === 0">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>SAP Part Type</th>
+                                    <th>Rev #</th>
+                                    <th>Document #</th>
+                                    <th>Dash #</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="part in ivm.instrument.parts">
+                                    <td style="width: 170px;">
+                                        <a ng-click="ivm.editPart(part)"
+                                           ng-if="!nav.isReadOnly()"
+                                           class="btn btn-xs btn-primary">
+                                            <i class="fa fa-edit"></i><span class="hidden-xs"> Edit</span>
+                                        </a>
+                                        <a ng-click="ivm.editPart(part)"
+                                           ng-if="nav.isReadOnly()"
+                                           class="btn btn-xs btn-primary">
+                                            <i class="fa fa-eye"></i><span class="hidden-xs"> View</span>
+                                        </a>
+                                        <a ng-click="ivm.deletePart(part)"
+                                           ng-if="!nav.isReadOnly()"
+                                           class="btn btn-xs btn-danger">
+                                            <i class="fa fa-trash"></i><span class="hidden-xs">&nbsp;Delete</span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-link" ng-click="ivm.editPart(part)">{{ part.name }}</button>
+                                    </td>
+                                    <td>{{ part.description }}</td>
+                                    <td>{{ part.sapPartType.name }}</td>
+                                    <td>{{ part.revisionNumber }}</td>
+                                    <td>{{ part.documentNumber }}</td>
+                                    <td>{{ part.dashNumber }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

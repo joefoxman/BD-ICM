@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2414323A-5EF9-4791-A453-02E4FD9A7179}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bd.Icm.Migrations</RootNamespace>
+    <AssemblyName>Bd.Icm.Migrations</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release - WHC|AnyCPU'">
+    <OutputPath>bin\Release - WHC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csla, Version=4.6.300.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSLA-Core.4.6.300\lib\net46\Csla.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentMigrator, Version=1.6.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentMigrator.1.6.1\lib\40\FluentMigrator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner, Version=1.6.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentMigrator.Runner.1.6.1\lib\40\FluentMigrator.Runner.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbSchema.cs" />
+    <Compile Include="Scripts\AlterSprocFetchInstrumentChangesAddVersioningFields.cs" />
+    <Compile Include="Scripts\AlterSprocFetchUncommittedPartChangesEffectiveFromTo.cs" />
+    <Compile Include="Scripts\AlterSprocFetchUncommittedPartChangesDrawingNumber.cs" />
+    <Compile Include="Scripts\AlterSprocFetchUncommittedPartChangesConvertToUncommittedChange.cs" />
+    <Compile Include="Scripts\AlterSprocFetchUncommittedPartChangesRemoveUserId.cs" />
+    <Compile Include="Scripts\AlterTableInstrumentCommitAddColumnEffectiveTo.cs" />
+    <Compile Include="Scripts\AlterTableInstrumentCommitAddColumnRevision.cs" />
+    <Compile Include="Scripts\AlterTableInstrumentAddRevision.cs" />
+    <Compile Include="Scripts\AlterTableInstrumentRenameRevisionAddMinorRevision.cs" />
+    <Compile Include="Scripts\AlterTablePartDateCodeToString.cs" />
+    <Compile Include="Scripts\AlterTablePartMetadataAddInstrumentCommitIdColumn.cs" />
+    <Compile Include="Scripts\AlterTablePartAddColumnMfg.cs" />
+    <Compile Include="Scripts\AlterSprocFetchUncommittedPartMetadataChangesEffectiveFromToDistinct.cs" />
+    <Compile Include="Scripts\AlterTableInstrumentCommitNotesMaxTo4000.cs" />
+    <Compile Include="Scripts\CreateSprocFetchUncommittedPartMetadataChanges.cs" />
+    <Compile Include="Scripts\AlterSprocFetchUsersWithUncommittedChangesIncludeMetadataChanges.cs" />
+    <Compile Include="Scripts\CleanUpDataForNewCommitChanges.cs" />
+    <Compile Include="Scripts\SetRoleForAdminUser.cs" />
+    <Compile Include="Scripts\SetRoleForTestUser.cs" />
+    <Compile Include="Scripts\RecreateTableUserRole.cs" />
+    <Compile Include="Scripts\UpdateAdminUserWithHashedPassword.cs" />
+    <Compile Include="Scripts\UpdateUnitTestUserWithHashedPassword2.cs" />
+    <Compile Include="Scripts\UpdateUnitTestUserWithHashedPassword.cs" />
+    <Compile Include="Scripts\AlterTablePartActionAddInstrumentCommitIdColumn.cs" />
+    <Compile Include="Scripts\AlterTableUserAddRoleColumn.cs" />
+    <Compile Include="Scripts\AlterTablePartRenameDrawingNumberToDocumentNumber.cs" />
+    <Compile Include="Scripts\AlterTablePartAddColumnMfgPartNumber.cs" />
+    <Compile Include="Scripts\AlterVersionedTablesToAddModificationTypeColumn.cs" />
+    <Compile Include="Scripts\AlterTableItemActionAlterColumnAction.cs" />
+    <Compile Include="Scripts\AlterTableInstrumentTypeToInt.cs" />
+    <Compile Include="Scripts\AlterTableInstrumentAddColumnSapPartType.cs" />
+    <Compile Include="Scripts\AlterTablePartCommittedDateToCommitId.cs" />
+    <Compile Include="Scripts\AlterTablePartTypeToInt.cs" />
+    <Compile Include="Scripts\AlterSprocFetchUncommittedPartChangesGetUsers.cs" />
+    <Compile Include="Scripts\CreateSprocFetchInstrumentChanges.cs" />
+    <Compile Include="Scripts\CreateSprocSearchInstrumentParts.cs" />
+    <Compile Include="Scripts\CreateSprocFetchUncommittedPartChanges.cs" />
+    <Compile Include="Scripts\CreateSprocFetchUsersWithUncommittedChanges.cs" />
+    <Compile Include="Scripts\CreateSprocGetNextDbVersion.cs" />
+    <Compile Include="Scripts\CreateSprocGetNextPartActionVersion.cs" />
+    <Compile Include="Scripts\CreateTableInstrumentCommit.cs" />
+    <Compile Include="Scripts\CreateUdfModificationStatus.cs" />
+    <Compile Include="Scripts\DropTablesUserRoleAndRole.cs" />
+    <Compile Include="Scripts\DropTableDbVersionsAndSprocs.cs" />
+    <Compile Include="Scripts\CreateTableDbVersion.cs" />
+    <Compile Include="Scripts\CreateUdfIsInVersion.cs" />
+    <Compile Include="Scripts\CreateSprocFetchPartHeirarchy.cs" />
+    <Compile Include="Scripts\FixSerialNumberUniqueConstraint.cs" />
+    <Compile Include="Scripts\SerialNumberUniqueConstraint.cs" />
+    <Compile Include="Scripts\AlterTablePartNullableDashNumberNullableDocumentNumber.cs" />
+    <Compile Include="Scripts\CreateSprocGetNextPartVersion.cs" />
+    <Compile Include="Scripts\AlterTablePartAddColumnDescription.cs" />
+    <Compile Include="Scripts\CreateTablePartMetadataVersion.cs" />
+    <Compile Include="Scripts\CreateTablePartActionVersion.cs" />
+    <Compile Include="Scripts\CreateTablePartVersion.cs" />
+    <Compile Include="Scripts\MigrationExtensions.cs" />
+    <Compile Include="Scripts\CreateSprocGetNextInstrumentVersion.cs" />
+    <Compile Include="Scripts\CreateTableInstrumentVersion.cs" />
+    <Compile Include="Scripts\InsertTableUserTestUser.cs" />
+    <Compile Include="Scripts\CreateTableInstrument.cs" />
+    <Compile Include="Scripts\CreateTablePart.cs" />
+    <Compile Include="Scripts\CreateTablePartAction.cs" />
+    <Compile Include="Scripts\CreateTablePartMetadata.cs" />
+    <Compile Include="Scripts\CreateTableUser.cs" />
+    <Compile Include="Scripts\CreateTableUserRole.cs" />
+    <Compile Include="Scripts\CreateTableRole.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\packages\FluentMigrator.1.6.1\tools\Migrate.exe.config">
+      <Link>Migrate.exe.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config" />
+    <Content Include="MigrateUp.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MigrateUpUnitTest.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MigrateUpUnitTestSetup.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MigrateUpSetup.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestMigrateUpSetup.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MigrateDown.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="TestMigrateDown.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestMigrateUp.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\FluentMigrator.1.6.1\tools\FluentMigrator.Runner.dll">
+      <Link>FluentMigrator.Runner.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\packages\FluentMigrator.1.6.1\tools\Migrate.exe">
+      <Link>Migrate.exe</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bd.Icm.Core\Bd.Icm.Core.csproj">
+      <Project>{274bfb7e-177a-4ee1-af30-3559080b07c1}</Project>
+      <Name>Bd.Icm.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bd.Icm\Bd.Icm.csproj">
+      <Project>{1059138b-6cdc-4f63-aee3-1c174a125c73}</Project>
+      <Name>Bd.Icm</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\CSLA-Core.4.6.300\analyzers\c#\Csla.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

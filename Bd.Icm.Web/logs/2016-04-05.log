@@ -1,0 +1,90 @@
+2016-04-05 07:24:22.5554 INFO /api/users/current
+2016-04-05 07:25:11.2134 INFO /api/users/current
+2016-04-05 07:26:14.4981 INFO /api/users/current
+2016-04-05 07:27:14.1720 INFO /api/users/current
+2016-04-05 07:27:30.0569 ERROR Csla.DataPortalException: DataPortal.Update failed (An error occurred while updating the entries. See the inner exception for details.) ---> Csla.Reflection.CallMethodException: Instrument.DataPortal_Insert method call failed ---> System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'MajorRevision'.
+Invalid column name 'MinorRevision'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   at System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   at System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   at System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   at System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Bd.Icm.DataAccess.VersionedRepository`1.Insert(T entity) in C:\Projects\BD-MOM\Bd.Icm.DataAccess\VersionedRepository.cs:line 54
+   at Bd.Icm.Instrument.DataPortal_Insert() in C:\Projects\BD-MOM\Bd.Icm\Instrument.cs:line 179
+   at lambda_method(Closure , Object , Object[] )
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   --- End of inner exception stack trace ---
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__50.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__49.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.LateBoundObject.<CallMethodTryAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter.GetResult()
+   at Csla.Server.SimpleDataPortal.<Update>d__2.MoveNext()
+   --- End of inner exception stack trace ---
+   at Csla.BusinessBase`1.Save()
+   at Bd.Icm.Web.Controllers.InstrumentController.Save(Instrument dto) in C:\Projects\BD-MOM\Bd.Icm.Web\Controllers\InstrumentController.cs:line 118
+
+2016-04-05 07:29:46.8824 INFO /api/users/current
+2016-04-05 07:41:23.2400 INFO /api/users/current
+2016-04-05 07:44:57.5563 INFO /api/users/current
+2016-04-05 08:33:50.1220 INFO /api/users/current
+2016-04-05 08:36:12.7921 INFO /api/users/current
+2016-04-05 08:45:39.1281 INFO /api/users/current
+2016-04-05 08:45:55.2084 INFO /api/users/current
+2016-04-05 08:46:01.4664 INFO /api/users/current
+2016-04-05 08:46:35.6859 INFO /api/users/current
+2016-04-05 08:46:50.9850 INFO /api/users/current
+2016-04-05 08:47:01.3967 INFO /api/users/current
+2016-04-05 08:48:10.5935 INFO /api/users/current
+2016-04-05 08:48:46.9207 INFO /api/users/current
+2016-04-05 08:49:16.6619 INFO /api/users/current
+2016-04-05 08:49:30.4671 INFO /api/users/current
+2016-04-05 08:51:27.1287 INFO /api/users/current
+2016-04-05 10:12:09.1840 INFO /api/users/current
+2016-04-05 10:12:16.7820 INFO /api/users/current
+2016-04-05 16:10:28.2629 INFO /api/users/current
+2016-04-05 16:10:29.6456 INFO /api/users/current
+2016-04-05 16:11:05.7634 INFO /api/users/current

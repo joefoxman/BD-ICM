@@ -1,0 +1,4 @@
+2016-06-21 10:48:57.9248 TRACE Login:Admin|1|c4ca4238a0b923820dcc509a6f75849b
+2016-06-21 10:49:27.5309 INFO /api/users/current
+2016-06-21 10:49:27.8609 INFO /api/users/current
+2016-06-21 10:49:40.4623 INFO /api/users/current

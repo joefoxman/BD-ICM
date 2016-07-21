@@ -1,0 +1,71 @@
+2016-04-25 14:44:24.1155 TRACE Login:Admin|1|c4ca4238a0b923820dcc509a6f75849b
+2016-04-25 14:44:30.8275 INFO /api/users/current
+2016-04-25 14:44:31.2465 INFO /api/users/current
+2016-04-25 14:44:38.5014 INFO /api/users/current
+2016-04-25 14:46:20.7706 INFO /api/users/current
+2016-04-25 14:46:21.2526 INFO /api/users/current
+2016-04-25 14:48:02.4821 INFO /api/users/current
+2016-04-25 14:48:02.8841 INFO /api/users/current
+2016-04-25 14:48:10.0570 INFO /api/users/current
+2016-04-25 14:49:04.5559 ERROR Csla.DataPortalException: DataPortal.Update failed (Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.) ---> Csla.Reflection.CallMethodException: Part.DataPortal_Insert method call failed ---> System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Bd.Icm.DataAccess.VersionedRepository`1.Insert(T entity) in C:\Projects\BD-MOM\Bd.Icm.DataAccess\VersionedRepository.cs:line 54
+   at Bd.Icm.Part.InsertCore(Part data) in C:\Projects\BD-MOM\Bd.Icm\Part.cs:line 348
+   at Bd.Icm.Part.DataPortal_Insert() in C:\Projects\BD-MOM\Bd.Icm\Part.cs:line 339
+   at lambda_method(Closure , Object , Object[] )
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   --- End of inner exception stack trace ---
+   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Boolean hasParameters, Object[] parameters)
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__50.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.MethodCaller.<CallMethodTryAsync>d__49.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Csla.Reflection.LateBoundObject.<CallMethodTryAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter.GetResult()
+   at Csla.Server.SimpleDataPortal.<Update>d__2.MoveNext()
+   --- End of inner exception stack trace ---
+   at Csla.BusinessBase`1.Save()
+   at Bd.Icm.Web.Controllers.PartController.Post(Part dto) in C:\Projects\BD-MOM\Bd.Icm.Web\Controllers\PartController.cs:line 53
+
+2016-04-25 14:50:00.1997 ERROR Csla.DataPortalException: DataPortal.Update failed (TransactionScope nested incorrectly.) ---> System.InvalidOperationException: TransactionScope nested incorrectly.
+   at System.Transactions.TransactionScope.Dispose()
+   at Csla.Server.TransactionalDataPortal.<Update>d__7.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.ConfiguredTaskAwaitable`1.ConfiguredTaskAwaiter.GetResult()
+   at Csla.Server.DataPortal.<Update>d__7.MoveNext()
+   --- End of inner exception stack trace ---
+   at Csla.BusinessBase`1.Save()
+   at Bd.Icm.Web.Controllers.PartController.Post(Part dto) in C:\Projects\BD-MOM\Bd.Icm.Web\Controllers\PartController.cs:line 53
+
+2016-04-25 14:57:17.5271 INFO /api/users/current
+2016-04-25 14:57:17.9441 INFO /api/users/current
+2016-04-25 14:58:24.4690 INFO /api/users/current
+2016-04-25 15:09:58.0955 INFO /api/users/current
+2016-04-25 15:09:58.5835 INFO /api/users/current
+2016-04-25 15:10:06.7594 INFO /api/users/current
+2016-04-25 15:12:23.5299 INFO /api/users/current
+2016-04-25 15:12:24.0379 INFO /api/users/current
+2016-04-25 15:12:29.6677 INFO /api/users/current
+2016-04-25 15:13:33.2314 INFO /api/users/current
+2016-04-25 15:13:59.0405 INFO /api/users/current
+2016-04-25 15:15:55.9871 INFO /api/users/current
+2016-04-25 15:15:56.4401 INFO /api/users/current
+2016-04-25 15:16:09.8601 INFO /api/users/current
+2016-04-25 15:21:52.1123 INFO /api/users/current
+2016-04-25 15:21:52.6263 INFO /api/users/current
+2016-04-25 15:22:45.2074 INFO /api/users/current
+2016-04-25 15:22:45.7604 INFO /api/users/current
+2016-04-25 15:22:49.2240 INFO /api/users/current

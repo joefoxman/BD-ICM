@@ -1,0 +1,60 @@
+﻿<div class="modal-header">
+    <h3>Copy an Instrument</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="instructions">Enter the details for the new instrument and click [Make a copy] to make a complete copy of the instrument.</div>
+        </div>
+    </div>
+    <div ng-show="icvm.modelErrors.length > 0">
+        <ul class="validation-summary-errors">
+            <li ng-repeat="error in icvm.modelErrors">{{ error }}</li>
+        </ul>
+    </div>
+    <div ng-include="'app/common/spinner.html'" ng-show="icvm.isBusy"></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal" name="instrumentForm">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <div class="form-group" ng-class="{ 'has-error' : instrumentForm.type.$invalid }">
+                                <label for="type" class="control-label col-sm-4">Type:</label>
+                                <div class="col-sm-8">
+                                    <input id="type" name="type" type="text"
+                                           required maxlength="200"
+                                           class="form-control" ng-model="icvm.instrument.type" />
+                                    <span class="help-block" ng-show="instrumentForm.type.$error.required">Type is required.</span>
+                                    <span class="help-block" ng-show="instrumentForm.type.$error.maxlength">Type cannot exceed 200 characters.</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : instrumentForm.nickName.$invalid }">
+                                <label for="nickName" class="control-label col-sm-4">Nickname:</label>
+                                <div class="col-sm-8">
+                                    <input id="nickName" name="nickName" type="text"
+                                           required maxlength="100"
+                                           class="form-control" ng-model="icvm.instrument.nickName" />
+                                    <span class="help-block" ng-show="instrumentForm.nickName.$error.maxlength">Instrument Nickname cannot exceed 100 characters.</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : instrumentForm.serialNumber.$invalid }">
+                                <label for="serialNumber" class="control-label col-sm-4">Serial #:</label>
+                                <div class="col-sm-8">
+                                    <input id="serialNumber" name="serialNumber" type="text" required maxlength="100"
+                                           class="form-control" ng-model="icvm.instrument.serialNumber" />
+                                    <span class="help-block" ng-show="instrumentForm.serialNumber.$error.required">Serial number is required.</span>
+                                    <span class="help-block" ng-show="instrumentForm.serialNumber.$error.maxlength">Serial number cannot exceed 100 characters.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="icvm.save()" ng-disabled="!instrumentForm.$valid">Make a copy</button>
+    <button class="btn btn-default" ng-click="icvm.cancel()">Cancel</button>
+</div>

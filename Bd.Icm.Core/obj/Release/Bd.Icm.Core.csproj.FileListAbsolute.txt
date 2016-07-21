@@ -1,0 +1,4 @@
+C:\Projects\BD-MOM\Bd.Icm.Core\bin\Release\Bd.Icm.Core.dll
+C:\Projects\BD-MOM\Bd.Icm.Core\bin\Release\Bd.Icm.Core.pdb
+C:\Projects\BD-MOM\Bd.Icm.Core\obj\Release\Bd.Icm.Core.dll
+C:\Projects\BD-MOM\Bd.Icm.Core\obj\Release\Bd.Icm.Core.pdb

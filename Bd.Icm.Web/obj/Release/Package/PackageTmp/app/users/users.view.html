@@ -1,0 +1,51 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h2>Users</h2>
+    </div>
+</div>
+<div ng-include="'app/common/spinner.html'" ng-show="ulvm.isBusy"></div>
+<div class="wrapper wrapper-content animated fadeIn" ng-hide="ulvm.isBusy">
+    <div class="row">
+        <div class="col-sm-12">
+            <div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="btn-toolbar">
+                            <button class="btn btn-primary" ng-click="ulvm.add()"><i class="glyphicon glyphicon-plus">&nbsp;</i>New User</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h4 class="text-info" ng-show="ulvm.users == null || ulvm.users.length == 0">No users.</h4>
+                        <div class="table-responsive" ng-hide="ulvm.users == null || ulvm.users.length == 0">
+                            <table class="table table-condensed table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Username</th>
+                                        <th>Name</th>
+                                        <th>Email Address</th>
+                                        <th>Role</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="user in ulvm.users">
+                                        <td style="max-width: 275px;">
+                                            <button ui-sref="root.security.user({ id: user.id })" class="btn btn-info btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</button>
+                                            <button class="btn btn-danger btn-sm" ng-click="ulvm.delete(user)"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                                        </td>
+                                        <td class="td-vert-center">{{ user.userName }} <label class="label label-warning" ng-show="user.isDisabled">Disabled</label></td>
+                                        <td class="td-vert-center">{{ user.firstName }} {{ user.lastName }}</td>
+                                        <td class="td-vert-center">{{ user.email }}</td>
+                                        <td class="td-vert-center">{{ user.role | userRole }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

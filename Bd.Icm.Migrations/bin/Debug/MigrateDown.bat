@@ -1,0 +1,1 @@
+migrate.exe --connection "BdIcmEntities" --provider SqlServer2012 /target Bd.Icm.Migrations.dll --task migrate:down --steps=%1 --configPath Bd.Icm.Migrations.dll.config

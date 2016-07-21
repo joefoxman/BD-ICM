@@ -1,0 +1,68 @@
+﻿<div class="modal-header">
+    <h3>Commit Changes</h3>
+</div>
+<div class="modal-body">
+    <div ng-include="'app/common/spinner.html'" ng-show="icvm.isBusy"></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h5>
+                Below is a list of uncommitted changes for this instrument.
+                Committing changes will increment the configuration number of this instrument to {{ icvm.instrument.majorRevision + 1 }}.
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="commitForm">
+                <div class="form-group">
+                    <label for="note">Enter a brief note to describe this commit (optional):</label>
+                    <textarea ng-model="icvm.instrumentCommit.notes" id="note" class="form-control" style="max-width: 100%;" maxlength="4000"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Uncommited Changes</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h5>
+                Select the change below that represents the last change you want to include in the commit by clicking anywhere in the row. All changes <i>before</i> and <i>including</i> the selected change will be included in the commit. Changes are shown in ascending chronological order with the oldest changes at the top. 
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table table-condensed table-stripped table-hover">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Include</th>
+                        <th>Source</th>
+                        <th>Location</th>
+                        <th>Date Modified</th>
+                        <th>Modified By</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="change in icvm.changes" ng-click="icvm.rowSelected(change)" ng-class="{'selectedRow': change.isSelected}">
+                        <td class="text-center"><i class="fa fa-check-square text-success" ng-show="change.isSelected"></i></td>
+                        <td>{{ change.recordType | recordType }}</td>
+                        <td>{{ change.location }}</td>
+                        <td>{{ change.createdDate | date: 'short' }}</td>
+                        <td>{{ change.creator }}</td>
+                        <td>{{ change.modificationType | modificationType }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="icvm.commit()" ng-disabled="!icvm.canCommit()">Yes, commit the changes</button>
+    <button class="btn btn-default" ng-click="icvm.cancel()">No, close and keep working</button>
+</div>
